@@ -6,7 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UsedItems extends Model
+class Discounts extends Model
 {
     use CrudTrait;
     use HasFactory;
@@ -17,10 +17,10 @@ class UsedItems extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'usedItems';
-    protected $primaryKey = 'usedItem_id';
+    protected $table = 'discounts';
+    // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['usedItem_id'];
+    protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
 

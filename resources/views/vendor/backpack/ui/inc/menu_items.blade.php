@@ -16,3 +16,6 @@
 <x-backpack::menu-item title="Sets" icon="la la-question" :link="backpack_url('set')" />
 <x-backpack::menu-item title="Recipes" icon="la la-question" :link="backpack_url('recipe')" />
 <x-backpack::menu-item title="Used items" icon="la la-question" :link="backpack_url('used-items')" />
+<x-backpack::menu-item title="Coupons" icon="la la-question" :link="backpack_url('coupons')" />
+<x-backpack::menu-item title="Coupon details" icon="la la-question" :link="backpack_url('coupon-details')" />
+<x-backpack::menu-item title="Discounts" icon="la la-question" :link="backpack_url('discounts')" />
