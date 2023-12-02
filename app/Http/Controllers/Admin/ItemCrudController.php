@@ -41,7 +41,14 @@ class ItemCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column('item_id')->label('ID');
+        CRUD::column('item_name')->label('商品名');
+        CRUD::column('category.name')->type('relationship')
+            ->label('分類'); // 表示名
+        CRUD::column('item_unit')->label('単位');
+        CRUD::column('item_price')->label('単価');
+        // CRUD::column('item_stock')->label('在庫数');
+        CRUD::column('item_image')->type('image')->label('商品画像');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -59,6 +66,20 @@ class ItemCrudController extends CrudController
     {
         CRUD::setValidation(ItemRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field([  // Select
+            'label'     => "Category",
+            'type'      => 'select',
+            'name'      => 'category_id', // the db column for the foreign key
+
+            // optional
+            // 'entity' should point to the method that defines the relationship in your Model
+            // defining entity will make Backpack guess 'model' and 'attribute'
+            'entity'    => 'category',
+
+            // optional - manually specify the related model and attribute
+            'model'     => "App\Models\Category", // related model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax:
