@@ -14,3 +14,4 @@
 <x-backpack::menu-item title="商品" icon="la la-question" :link="backpack_url('item')" />
 
 <x-backpack::menu-item title="Sets" icon="la la-question" :link="backpack_url('set')" />
+<x-backpack::menu-item title="Recipes" icon="la la-question" :link="backpack_url('recipe')" />
