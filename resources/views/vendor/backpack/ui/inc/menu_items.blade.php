@@ -15,3 +15,4 @@
 
 <x-backpack::menu-item title="Sets" icon="la la-question" :link="backpack_url('set')" />
 <x-backpack::menu-item title="Recipes" icon="la la-question" :link="backpack_url('recipe')" />
+<x-backpack::menu-item title="Used items" icon="la la-question" :link="backpack_url('used-items')" />

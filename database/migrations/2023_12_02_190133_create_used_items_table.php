@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('used_items', function (Blueprint $table) {
-            $table->id();
+        Schema::create('usedItems', function (Blueprint $table) {
+            $table->increments('usedItem_id');
+            $table->unsignedInteger('recipe_id')->nullable();
+            $table->foreign('recipe_id')->references('recipe_id')->on('recipes')->onUpdate('CASCADE')->onDelete('SET NULL');
+            $table->unsignedBigInteger('item_id')->nullable();
+            $table->foreign('item_id')->references('item_id')->on('items')->onUpdate('CASCADE')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
