@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-use App\Http\Requests\ItemRequest;
+use App\Http\Requests\SetRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ItemCrudController
+ * Class SetCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ItemCrudController extends CrudController
+class SetCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -27,11 +26,10 @@ class ItemCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Item::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/item');
-        CRUD::setEntityNameStrings('item', 'items');
+        CRUD::setModel(\App\Models\Set::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/set');
+        CRUD::setEntityNameStrings('set', 'sets');
     }
-
 
     /**
      * Define what happens when the List operation is loaded.
@@ -41,14 +39,9 @@ class ItemCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('item_id')->label('ID');
-        CRUD::column('item_name')->label('商品名');
-        CRUD::column('category.name')->type('relationship')
-            ->label('分類'); // 表示名
-        CRUD::column('item_unit')->label('単位');
-        CRUD::column('item_price')->label('単価');
-        // CRUD::column('item_stock')->label('在庫数');
-        CRUD::column('item_image')->type('image')->label('商品画像');
+        //CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column('set_id')->label('セットID');
+        CRUD::column('set_name')->label('セット名');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -64,29 +57,8 @@ class ItemCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(ItemRequest::class);
+        CRUD::setValidation(SetRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
-        CRUD::field([  // Select
-            'label'     => "Category",
-            'type'      => 'select',
-            'name'      => 'category_id', // the db column for the foreign key
-
-            // optional
-            // 'entity' should point to the method that defines the relationship in your Model
-            // defining entity will make Backpack guess 'model' and 'attribute'
-            'entity'    => 'category',
-
-            // optional - manually specify the related model and attribute
-            'model'     => "App\Models\Category", // related model
-            'attribute' => 'name', // foreign key attribute that is shown to user
-        ]);
-        CRUD::field('item_image')
-            ->type('upload')
-            ->withFiles([
-                'disk' => 'public',
-                'path' => 'uploads/items',
-            ]);
-
 
         /**
          * Fields can be defined using the fluent syntax:
