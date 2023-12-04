@@ -29,16 +29,16 @@ class Item extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function category()
-    {
-        return $this->belongsTo('App\Models\Category', 'category_id');
-    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category', 'category_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

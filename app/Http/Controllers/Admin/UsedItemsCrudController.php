@@ -39,7 +39,12 @@ class UsedItemsCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        //CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column("usedItem_id")->label('Used Item ID');
+        CRUD::column('recipe.recipe_name')->type('relationship')
+            ->label('recipe'); // 表示名
+        CRUD::column('item.item_name')->type('relationship')->label('item');
+        CRUD::column('usedItem_quantity');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -56,7 +61,36 @@ class UsedItemsCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(UsedItemsRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        //CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field([  // Select
+            'label'     => "Recipe",
+            'type'      => 'select',
+            'name'      => 'recipe_id', // the db column for the foreign key
+
+            // optional
+            // 'entity' should point to the method that defines the relationship in your Model
+            // defining entity will make Backpack guess 'model' and 'attribute'
+            'entity'    => 'recipe',
+
+            // optional - manually specify the related model and attribute
+            'model'     => "App\Models\Recipe", // related model
+            'attribute' => 'recipe_name', // foreign key attribute that is shown to user
+        ]);
+        CRUD::field([  // Select
+            'label'     => "Item",
+            'type'      => 'select',
+            'name'      => 'item_id', // the db column for the foreign key
+
+            // optional
+            // 'entity' should point to the method that defines the relationship in your Model
+            // defining entity will make Backpack guess 'model' and 'attribute'
+            'entity'    => 'item',
+
+            // optional - manually specify the related model and attribute
+            'model'     => "App\Models\Item", // related model
+            'attribute' => 'item_name', // foreign key attribute that is shown to user
+        ]);
+        CRUD::field('usedItem_quantity');
 
         /**
          * Fields can be defined using the fluent syntax:

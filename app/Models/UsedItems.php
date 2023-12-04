@@ -35,7 +35,15 @@ class UsedItems extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function recipe()
+    {
+        return $this->belongsTo('App\Models\Recipe', 'recipe_id');
+    }
 
+    public function item()
+    {
+        return $this->belongsTo('App\Models\Item', 'item_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
