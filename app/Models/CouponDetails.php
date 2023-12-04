@@ -18,9 +18,9 @@ class CouponDetails extends Model
     */
 
     protected $table = 'coupon_details';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'coupon_issue_serial';
     // public $timestamps = false;
-    protected $guarded = ['id'];
+    protected $guarded = ['coupon_issue_serial', 'coupon_code',];
     // protected $fillable = [];
     // protected $hidden = [];
 
@@ -35,7 +35,14 @@ class CouponDetails extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function coupon()
+    {
+        return $this->belongsTo('App\Models\Coupons', 'coupon_code', 'coupon_code');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

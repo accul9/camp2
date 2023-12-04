@@ -39,7 +39,12 @@ class CouponDetailsCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        //CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column("coupon.coupon_code")->type('relationship')
+            ->label('クーポンコード'); // 表示名
+        CRUD::column("coupon_issue_serial")->label('発行連番');
+
+        CRUD::column("user.user_id")->type('relationship')->label('ユーザーID');
 
         /**
          * Columns can be defined using the fluent syntax:
