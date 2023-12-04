@@ -39,7 +39,10 @@ class DiscountsCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        //CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column('discount_id')->label('Discount ID');
+        CRUD::column('discount_name')->label('割引名');
+        CRUD::column('discount_percentage')->label('割引率');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -57,6 +60,7 @@ class DiscountsCrudController extends CrudController
     {
         CRUD::setValidation(DiscountsRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
+
 
         /**
          * Fields can be defined using the fluent syntax:

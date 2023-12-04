@@ -18,10 +18,10 @@ class Discounts extends Model
     */
 
     protected $table = 'discounts';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'discount_id';
     // public $timestamps = false;
-    protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $guarded = ['discount_id'];
+    protected $fillable = ['discount_name', 'discount_percentage'];
     // protected $hidden = [];
 
     /*
