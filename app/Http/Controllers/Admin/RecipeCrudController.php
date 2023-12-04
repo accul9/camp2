@@ -71,6 +71,10 @@ class RecipeCrudController extends CrudController
             'name'  => 'recipe_description',
             'label' => 'Description',
             'type'  => 'summernote',
+            'options' => [
+                'minheight' => 300,
+                'height' => 360
+            ]
         ]);
         CRUD::field('recipe_image')
             ->type('upload')
