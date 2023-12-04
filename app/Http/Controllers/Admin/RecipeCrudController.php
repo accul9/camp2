@@ -71,6 +71,7 @@ class RecipeCrudController extends CrudController
             'name'  => 'recipe_description',
             'label' => 'Description',
             'type'  => 'summernote',
+            //'escaped' => false, // allow html tags
             'options' => [
                 'minheight' => 300,
                 'height' => 360
@@ -98,5 +99,14 @@ class RecipeCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {
+        //CRUD::setFromDb();
+        CRUD::column('recipe_name')->label('レシピ名');
+        CRUD::column('set.set_name')->type('relationship')
+            ->label('セット'); // 表示名
+        CRUD::column('short_description')->label('レシピ内容');
     }
 }
