@@ -18,9 +18,9 @@ class Coupons extends Model
     */
 
     protected $table = 'coupons';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'coupon_id';
     // public $timestamps = false;
-    protected $guarded = ['id'];
+    protected $guarded = ['coupon_id'];
     // protected $fillable = [];
     // protected $hidden = [];
 
