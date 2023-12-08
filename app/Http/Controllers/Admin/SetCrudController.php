@@ -42,6 +42,7 @@ class SetCrudController extends CrudController
         //CRUD::setFromDb(); // set columns from db columns.
         CRUD::column('set_id')->label('セットID');
         CRUD::column('set_name')->label('セット名');
+        CRUD::column('set_image')->type('image')->label('セット画像');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -58,7 +59,13 @@ class SetCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(SetRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field('set_name')->label('セット名');
+        CRUD::field('set_image')
+            ->type('upload')
+            ->withFiles([
+                'disk' => 'public',
+                'path' => 'uploads/sets',
+            ]);
 
         /**
          * Fields can be defined using the fluent syntax:
