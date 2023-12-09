@@ -10,7 +10,9 @@
     <h2>セットレシピ：</h2>
     <ul>
         @foreach ($recipes as $recipe)
-            <li>{{ $recipe->recipe_name }}</li>
+            <li>
+                <a href="{{ route('recipes.show', $recipe->recipe_id) }}">{{ $recipe->recipe_name }}</a>
+            </li>
         @endforeach
     </ul>
 </body>

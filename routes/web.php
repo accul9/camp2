@@ -3,7 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SetController;
 use App\Models\Item;
+use App\Models\Set;
+use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,14 @@ Route::get('/dashboard', function () {
 
 //Setsの中に含まれるRecipeの一覧表示
 Route::get('/sets/{set}', [SetController::class, 'show'])->name('sets.show');
+
+//Recipe個別表示
+Route::get('/recipe/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+
+//Recipeの詳細表示
+/* Route::get('/sets/{set}/items/{item}', function (Item $item) {
+    return view('items.show', compact('item'));
+})->name('items.show'); */
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
