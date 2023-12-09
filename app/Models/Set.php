@@ -35,7 +35,10 @@ class Set extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class, 'set_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

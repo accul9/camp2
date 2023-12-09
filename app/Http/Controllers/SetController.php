@@ -13,4 +13,10 @@ class SetController extends Controller
         //return view('sets.index', compact('sets'));
         return view('sets.index', ['sets' => $sets]);
     }
+
+    public function show(Set $set)
+    {
+        $recipes = $set->recipes;
+        return view('sets.show', compact('set', 'recipes'));
+    }
 }
