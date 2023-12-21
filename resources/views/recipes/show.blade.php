@@ -3,6 +3,7 @@
 
 <head>
     <title>{{ $recipe->recipe_name }}</title>
+
 </head>
 
 <body>
