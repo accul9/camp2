@@ -7,6 +7,10 @@ use App\Models\Set;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\User\ItemController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\LifeCycleTestController;
+use App\Http\Contollers\ComponentTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +24,7 @@ use App\Http\Controllers\RecipeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -50,4 +54,28 @@ Route::middleware('auth')->group(function () {
     Route::get('/sets', [SetController::class, 'index'])->name('sets.index'); // Add this line
 });
  */
+
+//Itemの一覧表示
+Route::middleware('auth:users')->group(function () {
+    Route::get('/', [ItemController::class, 'index'])->name('items.index');
+    Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
+});
+
+
+//カート機能
+Route::prefix('cart')->middleware('auth:users')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+    Route::post('add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('delete/{item}', [CartController::class, 'delete'])->name('cart.delete');
+    Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::get('success', [CartController::class, 'success'])->name('cart.success');
+    Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
+});
+
+
+Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']);
+Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']);
+Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
+Route::get('/serviceprovidertest', [LifeCycleTestController::class, 'showServiceProviderTest']);
+
 require __DIR__ . '/auth.php';
