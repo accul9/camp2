@@ -15,6 +15,15 @@
             </li>
         @endforeach
     </ul>
+
+    <form action="{{ route('cart.add') }}" method="POST">
+        @csrf
+        <input type="hidden" name="set_id" value="{{ $set->id }}">
+        <button type="submit">購入</button>
+
+    </form>
+
+    <a href="{{ route('sets.index') }}"><button>セット一覧に戻る</button></a>
 </body>
 
 </html>

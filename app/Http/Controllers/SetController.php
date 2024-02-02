@@ -10,8 +10,8 @@ class SetController extends Controller
     public function index()
     {
         $sets = Set::all();
-        //return view('sets.index', compact('sets'));
-        return view('sets.index', ['sets' => $sets]);
+        return view('sets.index', compact('sets'));
+        //return view('sets.index', ['sets' => $sets]);
     }
 
     public function show(Set $set)

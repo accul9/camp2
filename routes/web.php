@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\User\ItemController;
 use App\Http\Controllers\User\CartController;
-use App\Http\Controllers\User\LifeCycleTestController;
-use App\Http\Contollers\ComponentTestController;
+use App\Http\Controllers\LifeCycleTestController;
+use App\Http\Controllers\ComponentTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +30,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+//Setsの一覧表示
+Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
 
 //Setsの中に含まれるRecipeの一覧表示
 Route::get('/sets/{set}', [SetController::class, 'show'])->name('sets.show');
