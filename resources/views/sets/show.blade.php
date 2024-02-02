@@ -20,6 +20,7 @@
         @csrf
         <input type="hidden" name="set_id" value="{{ $set->id }}">
         <button type="submit">購入</button>
+        <input type="hidden" name="redirect" value="{{ route('cart.index') }}">
 
     </form>
 
