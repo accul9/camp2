@@ -24,7 +24,7 @@ use App\Http\Controllers\ComponentTestController;
 */
 
 Route::get('/', function () {
-    return view('user.welcome');
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -52,17 +52,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
 });
 
+//ログイン後Itemの一覧を表示
 /* Route::middleware('auth:users')->group(function () {
-    Route::get('/', [ItemController::class, 'index'])->name('item.index');
-    Route::get('/sets', [SetController::class, 'index'])->name('sets.index'); // Add this line
-});
- */
-
-//Itemの一覧表示
-Route::middleware('auth:users')->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('items.index');
     Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
-});
+}); */
 
 
 //カート機能
