@@ -19,3 +19,4 @@
 <x-backpack::menu-item title="Coupons" icon="la la-question" :link="backpack_url('coupons')" />
 <x-backpack::menu-item title="Coupon details" icon="la la-question" :link="backpack_url('coupon-details')" />
 <x-backpack::menu-item title="Discounts" icon="la la-question" :link="backpack_url('discounts')" />
+<x-backpack::menu-item title='Pages' icon='la la-file-o' :link="backpack_url('page')" />

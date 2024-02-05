@@ -1,3 +1,5 @@
+{{-- このページは使ってない --}}
+
 <div>
     @foreach ($sets as $set)
         <p>{{ $set->set_name }}</p>
