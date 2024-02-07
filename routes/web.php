@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SetController;
 use App\Models\Item;
 use App\Models\Set;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SetController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\User\ItemController;
-use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\LifeCycleTestController;
 use App\Http\Controllers\ComponentTestController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\ItemController as UserItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,12 @@ use App\Http\Controllers\ComponentTestController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//Indexページ
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
+//Dashboardページ
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -57,6 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('items.index');
     Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
 }); */
+
+//ログイン後Itemの一覧を表示
+
+Route::get('/items', [ItemController::class, 'index'])->name('items');
+
+//Itemの詳細表示
+Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
 
 
 //カート機能
