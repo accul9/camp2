@@ -68,6 +68,16 @@ class RecipeCrudController extends CrudController
             'model' => "App\Models\Set",
         ]);
         CRUD::field([   // Summernote
+            'name'  => 'recipe_ingredients',
+            'label' => 'Ingredients',
+            'type'  => 'summernote',
+            'escaped' => false, // allow html tags
+            'options' => [
+                'minheight' => 300,
+                'height' => 360
+            ]
+        ]);
+        CRUD::field([   // Summernote
             'name'  => 'recipe_description',
             'label' => 'Description',
             'type'  => 'summernote',
@@ -107,6 +117,7 @@ class RecipeCrudController extends CrudController
         CRUD::column('recipe_name')->label('レシピ名');
         CRUD::column('set.set_name')->type('relationship')
             ->label('セット'); // 表示名
+        CRUD::column('recipe_ingredients')->type('text')->label('材料');
         CRUD::column('short_description')->label('レシピ内容');
     }
 }
