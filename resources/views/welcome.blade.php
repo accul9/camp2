@@ -7,7 +7,7 @@
 
         <meta charset="UTF-8">
         <title>メインページ</title>
-        <link href="{{asset('/assets/css/style.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="">
 
         <!-- Fonts -->
