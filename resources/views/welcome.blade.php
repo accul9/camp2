@@ -37,7 +37,7 @@
     <header>
         <nav>
             <a class="header-logo-link" href="#">
-                <img class="header-logo-img" src="./image/キャンプ飯logo.png">
+                <img class="header-logo-img" src="{{ asset('images/logo.png') }}">
             </a>
             <ul class="mainnav">
                 <li><a href=""><p class="nava">Recipe</p> </a></li>
