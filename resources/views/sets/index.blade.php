@@ -1,7 +1,9 @@
 @extends('layouts.app')
+{{-- テンプレを読み込む --}}
 
 
 @section('content')
+    {{-- ここから編集して --}}
     <div class="container w-full px-5 py-24 mx-auto mt-5 border-red-500">
         {{-- 上半部分 --}}
         <div class="flex flex-wrap w-full mb-20">
@@ -33,4 +35,5 @@
             @endforeach
         </div>
     </div>
+    {{-- ここまで編集して --}}
 @endsection
