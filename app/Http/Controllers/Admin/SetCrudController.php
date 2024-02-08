@@ -42,6 +42,8 @@ class SetCrudController extends CrudController
         //CRUD::setFromDb(); // set columns from db columns.
         CRUD::column('set_id')->label('セットID');
         CRUD::column('set_name')->label('セット名');
+        CRUD::column('set_price')->type('number')->label('セット価格');
+        CRUD::column('set_description')->type('text')->label('セット説明');
         CRUD::column('set_image')->type('image')->label('セット画像');
 
         /**
@@ -60,6 +62,8 @@ class SetCrudController extends CrudController
     {
         CRUD::setValidation(SetRequest::class);
         CRUD::field('set_name')->label('セット名');
+        CRUD::field('set_price')->type('number')->label('セット価格');
+        CRUD::field('set_description')->type('text')->label('セット説明');
         CRUD::field('set_image')
             ->type('upload')
             ->withFiles([
