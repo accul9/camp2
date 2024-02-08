@@ -1,0 +1,316 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@200&family=Sawarabi+Mincho&display=swap');
+
+* {box-sizing: border-box;} /* paddingとborderを幅と高さに含める */
+
+img {
+  vertical-align: bottom;
+  margin: 0;
+  padding: 0;
+  }
+
+body {
+	font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;/* どのデバイスでも見れるようにするために書体の設定 */
+  line-height: 1.8;/* 行間設定 */
+  /* background-image: url(../image/haikei.jpg); */
+  overflow-x: hidden;
+}
+
+* {box-sizing: border-box;
+  margin: 0;
+} 
+
+body {
+	font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ',Meiryo,'ＭＳ Ｐゴシック','MS PGothic';
+  line-height: 1.8;
+  margin: 0 ;
+  background-color: #FEF4E8;
+}
+
+ul,li {list-style: none;}
+
+a{
+  color: rgb(60, 60, 60);
+  text-decoration: none;
+}
+
+header {
+  background-color: #FEF4E8;
+  width: 200px;
+  height: 100vh;
+  position: absolute;
+  z-index: 999;
+  position: fixed;
+}
+
+.header-nav-list {
+  list-style: none;
+}
+
+
+.header-nav-item {
+  height: auto;
+  width: 100%;
+
+  padding: 20px 0 20px 30px;
+}
+
+.header-logo {
+  height: 120px;
+  width: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo-link {
+  height: 70px;
+  width: 70px;
+}
+
+.header-logo-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.nava{
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+}
+
+.mainnav a{
+  font-size: 28px;
+}
+
+.mainnav{
+  padding: 0 0 0 20px;
+}
+
+.mainnav li{
+  margin: 15px;
+  margin-bottom: 18px;
+}
+
+.mainnav1{
+  margin-top: 320px;
+  margin-bottom: 18px;
+}
+
+/* openbtn */
+
+.empty_1{
+  right: 60px;
+  position: fixed;
+  z-index: 1000;
+}
+
+.openbtn{
+top: 60px;
+  position: relative;
+  background-color: #fef4e800;
+  cursor: pointer;
+  width: 100px;
+  height:65px;
+  border-radius: 5px;
+}
+
+
+.openbtn span{
+display: inline-block;
+transition: all .4s;
+position: absolute;
+left: 25px;
+height: 2px;
+border-radius: 5px;
+background-color: #FEF4E8;
+width: 50%;
+}
+
+
+.openbtn.scrolled span {
+  background-color: rgb(74, 74, 74); /* スクロールされた場合の背景色 */
+}
+
+
+.openbtn span:nth-of-type(1) {
+  top:15px;	
+}
+
+.openbtn span:nth-of-type(2) {
+  top:30px;
+}
+
+.openbtn span:nth-of-type(3) {
+  top:45px;
+}
+
+.openbtn span:nth-of-type(3)::after {
+  position: absolute;
+  top:5px;
+  left:-2px;
+  color: #fff;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+}
+
+.openbtn.active span:nth-of-type(1) {
+  top: 14px;
+  left: 25px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 50%;
+  background-color: rgb(74, 74, 74);
+  }
+  
+  .openbtn.active span:nth-of-type(2) {
+      opacity: 0;
+  }
+  
+  .openbtn.active span:nth-of-type(3){
+  top: 26px;
+  left: 25px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 50%;
+  background-color: rgb(74, 74, 74);
+  }
+  
+  .openbtn.active span:nth-of-type(3)::after {
+    transform: translateY(0) rotate(-45deg);
+    top:5px;
+    left:4px;
+  }
+
+
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fef4e8f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.empty_2{
+  height: 980px;
+  background-color: #FEF4E8;
+}
+
+.empty_3{
+  height: 1960px;
+  background-color: #FEF4E8;
+}
+
+
+section{
+  position: relative;
+  background-color: rgb(254, 244, 232);
+  height: 950px;
+  margin-left: 50px;
+}
+
+section .p0{
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  position: absolute;
+  left: 300px;
+  top: 120px;
+  font-size: 50px;
+}
+
+
+.p1{
+  position: absolute;
+  left: 300px;
+  top: 260px;
+  font-size: 30px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+}
+
+.p2{
+  position: absolute;
+  left: 300px;
+  top: 310px;
+  font-size: 15px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+}
+
+.p3{
+  position: absolute;
+  left: 300px;
+  top: 400px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p3 p{
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  font-size: 30px;
+  color: rgb(74, 74, 74);
+}
+
+.p3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.p3 a{
+  background:
+    linear-gradient(
+      to right,
+      rgb(74, 74, 74),
+      rgb(74, 74, 74)
+    ),
+    linear-gradient(
+      to right,
+      rgb(254, 244, 232),
+      rgb(254, 244, 232),
+      rgb(254, 244, 232)
+  );
+  background-size: 100% 2px, 0 2px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+}
+
+.p3 a:hover {
+  background-size: 0 2px, 100% 2px;  
+}
+
+.img1{
+  position: absolute;
+  left: 300px;
+  top: 490px;
+  box-shadow: 7px 10px 5px #cccccc;
+}
+
+.img2{
+  position: absolute;
+  right: 200px;
+  top: 270px;
+  box-shadow: 7px 10px 5px #cccccc;
+}
+
+.parallax_content{
+  min-height: 400px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.front_content{
+  padding: 60px;
+  background-color: #fff;
+}
+.parallax_content.img_bg_01{
+  background-image: url();
+}
