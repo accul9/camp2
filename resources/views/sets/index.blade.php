@@ -1,10 +1,10 @@
 @extends('layouts.app')
-{{-- テンプレを読み込む --}}
+{{-- ↑テンプレを読み込む --}}
 
 
 @section('content')
     {{-- ここから編集して --}}
-    <div class="container w-full px-5 py-24 mx-auto mt-5 border-red-500">
+    <div class="container w-full px-5 py-24 mx-auto mt-5">
         {{-- 上半部分 --}}
         <div class="flex flex-wrap w-full mb-20">
             <div class="w-full mb-6 lg:w-1/2 lg:mb-0">
@@ -17,7 +17,7 @@
             </p>
         </div>
         {{-- 下半部分 --}}
-        <div class="flex flex-row flex-wrap -m-4" p-4>
+        <div class="flex flex-row flex-wrap p-4 -m-4">
             @foreach ($sets as $set)
                 <div class="p-4 xl:w-1/3 md:w-1/3">
                     <div class="p-10 rounded-lg shadow-lg bg-gray-50">

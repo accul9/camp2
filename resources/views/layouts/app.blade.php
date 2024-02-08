@@ -15,11 +15,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased">
-    <header class="text-gray-600 body-font">
+<body class="h-screen p-0 m-0 antialiased">
+    <header class="text-gray-600 body-font bg-[#e0ebaf] fixed top-0 left-0 w-full">
         <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
             <a class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
-                <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-10 h-10">
+                <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-14 h-14">
                 <span class="ml-3 text-xl">キャンプメシ</span>
             </a>
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
@@ -56,10 +56,10 @@
         @yield('content')
     </main>
 
-    <footer class="text-gray-600 body-font">
-        <div class="container flex flex-col items-center px-5 py-8 mx-auto sm:flex-row">
+    <footer class="text-gray-600 body-font bg-[#e0ebaf] fixed bottom-0 left-0 w-full">
+        <div class="container relative bottom-0 left-0 flex flex-col items-center px-5 py-6 mx-auto sm:flex-row">
             <a class="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start">
-                <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-10 h-10">
+                <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-14 h-14">
                 <span class="ml-3 text-xl">CampMeshi</span>
             </a>
             <p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0">©
