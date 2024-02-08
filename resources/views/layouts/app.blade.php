@@ -17,10 +17,10 @@
 
 <body class="h-screen p-0 m-0 antialiased">
     <header class="text-gray-600 body-font bg-[#e0ebaf] fixed top-0 left-0 w-full">
-        <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+        <div class="container flex flex-col flex-wrap items-center p-3 mx-auto md:flex-row">
             <a class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
-                <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-14 h-14">
-                <span class="ml-3 text-xl">キャンプメシ</span>
+                <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-16 h-16">
+                <span class="text-2xl">キャンプメシ</span>
             </a>
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
                 <a class="mr-5 hover:text-gray-900">Cart</a>
@@ -31,7 +31,7 @@
                 <form action="{{ route('logout') }}" method="POST" class="inline-flex items-center">
                     @csrf
                     <button type="submit"
-                        class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0">
+                        class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-[#ffec47] md:mt-0">
                         Logout
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
@@ -41,7 +41,7 @@
                 </form>
             @else
                 <a href="{{ route('login') }}"
-                    class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0">Login
+                    class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-[#ffec47] md:mt-0">Login
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
                         <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -57,9 +57,9 @@
     </main>
 
     <footer class="text-gray-600 body-font bg-[#e0ebaf] fixed bottom-0 left-0 w-full">
-        <div class="container relative bottom-0 left-0 flex flex-col items-center px-5 py-6 mx-auto sm:flex-row">
+        <div class="container relative bottom-0 left-0 flex flex-col items-center px-5 py-2 mx-auto sm:flex-row">
             <a class="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start">
-                <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-14 h-14">
+                <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-12 h-12">
                 <span class="ml-3 text-xl">CampMeshi</span>
             </a>
             <p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0">©

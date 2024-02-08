@@ -26,8 +26,18 @@
                 class="mb-2 text-2xl font-bold text-gray-900 underline sm:text-3xl title-font underline-offset-8 decoration-green-500">
                 {{ $set->set_name }}</h1>
             <p class="w-full mt-20 mb-20 leading-relaxed text-gray-500">
-                セットについての簡単の説明が入ります。セットについての簡単の説明が入ります。セットについての簡単の説明が入ります。セットについての簡単の説明が入ります。
+                {{ $set->set_description }}
             </p>
+            <p class="text-xl text-gray-500">販売価格：&yen{{ $set->set_price }}</p>
+            <p class="my-5 text-xl text-gray-500">数量：
+                <select name="quantity" id="quantity" class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
+                    @for ($i = 1; $i <= 10; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+            </p>
+
+            <div></div>
 
             <div class="flex flex-row justify-start">
                 {{-- 購入ボタン --}}
