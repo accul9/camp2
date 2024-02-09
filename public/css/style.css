@@ -195,6 +195,11 @@ width: 50%;
   z-index: 999;
 }
 
+.screen_menu a {
+  font-size: 42px;
+  font-family: 'Sawarabi Mincho', serif;
+}
+
 .empty_2{
   height: 980px;
   background-color: #FEF4E8;

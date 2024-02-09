@@ -37,7 +37,6 @@
                 </select>
             </p>
 
-            <div></div>
 
             <div class="flex flex-row justify-start">
                 {{-- 購入ボタン --}}

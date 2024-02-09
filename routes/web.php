@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
 
 //ログイン後Itemの一覧を表示
 
-Route::get('/items', [ItemController::class, 'index'])->name('items');
+Route::get('/items', [ItemController::class, 'index'])->name('items.index');
 
 //Itemの詳細表示
 Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
@@ -84,5 +84,6 @@ Route::get('/component-test1', [ComponentTestController::class, 'showComponent1'
 Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']);
 Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
 Route::get('/serviceprovidertest', [LifeCycleTestController::class, 'showServiceProviderTest']);
+
 
 require __DIR__ . '/auth.php';

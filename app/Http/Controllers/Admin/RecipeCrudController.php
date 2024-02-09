@@ -74,7 +74,7 @@ class RecipeCrudController extends CrudController
             'escaped' => false, // allow html tags
             'options' => [
                 'minheight' => 300,
-                'height' => 360
+                'height' => 240
             ]
         ]);
         CRUD::field([   // Summernote
@@ -84,7 +84,7 @@ class RecipeCrudController extends CrudController
             //'escaped' => false, // allow html tags
             'options' => [
                 'minheight' => 300,
-                'height' => 360
+                'height' => 240
             ]
         ]);
         CRUD::field('recipe_image')
