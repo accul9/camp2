@@ -108,8 +108,8 @@
             </a>
         </div>
 
-        <img class="img1 slideshow-img" src="{{ asset('image/image1.jpg') }}" alt="">
-        <img class="img2 slideshow-img" src="{{ asset('image/image4.jpg') }}" alt="">
+        <img class="img1 slideshow-img" src="{{ asset('images/image1.jpg') }}" alt="">
+        <img class="img2 slideshow-img" src="{{ asset('images/image4.jpg') }}" alt="">
     </section>
 
 
