@@ -21,7 +21,7 @@ class Item extends Model
     protected $primaryKey = 'item_id';
     // public $timestamps = false;
     protected $guarded = ['item_id'];
-    // protected $fillable = [];
+    //protected $fillable = ['belongedSet_id'];
     // protected $hidden = [];
 
     /*
@@ -38,6 +38,11 @@ class Item extends Model
     public function category()
     {
         return $this->belongsTo('App\Models\Category', 'category_id');
+    }
+
+    public function set()
+    {
+        return $this->belongsTo(Set::class, 'belongedSet_id');
     }
     /*
     |--------------------------------------------------------------------------
