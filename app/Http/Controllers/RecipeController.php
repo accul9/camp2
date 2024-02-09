@@ -10,6 +10,7 @@ class RecipeController extends Controller
     public function show($recipe_id)
     {
         $recipe = Recipe::find($recipe_id);
-        return view('recipes.show', ['recipe' => $recipe]);
+        $set = $recipe->set;
+        return view('recipes.show', compact('recipe', 'set'));
     }
 }

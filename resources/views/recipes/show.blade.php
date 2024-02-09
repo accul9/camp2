@@ -18,23 +18,25 @@
         </div>
 
         {{-- 右半分 --}}
-        <div class="flex flex-col w-1/2 mx-auto p-[100px]">
-
+        <div class="flex flex-col w-1/2 p-10 mx-auto">
+            <div class="flex justify-end">
+                {{-- レシピ一覧に戻るボタン --}}
+                <a href="{{ route('sets.show', ['set' => $set->set_id]) }}">
+                    <button
+                        class="flex w-[210px] justify-center px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">レシピ一覧に戻る</button>
+                </a>
+            </div>
             <div>
-                <h2 class="text-2xl font-semibold">材料：</h2>
+                <h2 class="mb-5 text-2xl font-semibold">材料：</h2>
                 {!! $recipe->recipe_ingredients !!}
             </div>
 
             <div class="mt-10">
-                <h2 class="text-2xl font-semibold">作り方：</h2>
+                <h2 class="mb-5 text-2xl font-semibold">作り方：</h2>
                 {!! $recipe->recipe_description !!}
             </div>
 
-            {{-- レシピ一覧に戻るボタン --}}
-            <a href="">
-                <button
-                    class="flex w-[210px] justify-center px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">レシピ一覧に戻る</button>
-            </a>
+
         </div>
     </div>
 @endsection

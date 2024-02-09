@@ -36,8 +36,9 @@ Route::get('/dashboard', function () {
 //Setsの一覧表示
 Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
 
-//Setsの中に含まれるRecipeの一覧表示
+//Setの個別表示
 Route::get('/sets/{set}', [SetController::class, 'show'])->name('sets.show');
+
 
 //Recipe個別表示
 Route::get('/recipe/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
