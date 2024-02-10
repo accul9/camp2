@@ -43,8 +43,8 @@ class ItemCrudController extends CrudController
     {
         CRUD::column('item_id')->label('ID');
         CRUD::column('item_name')->label('商品名');
-        CRUD::column('category.name')->type('relationship');
-        CRUD::column('belongedSet_id')->type('relationship')->attribute('set_name')->label('セット'); // 表示名
+        CRUD::column('category.name')->type('relationship')
+            ->label('分類'); // 表示名
         CRUD::column('item_unit')->label('単位');
         CRUD::column('item_price')->label('単価');
         // CRUD::column('item_stock')->label('在庫数');
@@ -66,16 +66,6 @@ class ItemCrudController extends CrudController
     {
         CRUD::setValidation(ItemRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
-
-        CRUD::field([   // Select
-            'name'  => 'belongedSet_id',
-            'label' => 'セット',
-            'type'  => 'select',
-            'entity' => 'set',
-            'attribute' => 'set_name',
-            'model' => "App\Models\Set",
-        ]);
-
         CRUD::field([  // Select
             'label'     => "Category",
             'type'      => 'select',
