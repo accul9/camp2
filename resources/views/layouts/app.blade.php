@@ -23,9 +23,9 @@
                 <span class="text-2xl">キャンプメシ</span>
             </a>
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
-                <a class="mr-5 hover:text-gray-900">Cart</a>
-                <a class="mr-5 hover:text-gray-900">My Page</a>
-                <a class="mr-5 hover:text-gray-900">Home</a>
+                <a href="{{ route('index') }}" class="mr-5 hover:text-gray-900">Home</a>
+                <a href="#" class="mr-5 hover:text-gray-900">Cart</a>
+                <a href="{{ route('profile.show') }}" class="mr-5 hover:text-gray-900">My Page</a>
             </nav>
             @if (Auth::check())
                 <form action="{{ route('logout') }}" method="POST" class="inline-flex items-center">

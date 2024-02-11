@@ -23,7 +23,7 @@ use App\Http\Controllers\User\ItemController as UserItemController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//Indexページ
+//トップページ
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
@@ -36,22 +36,26 @@ Route::get('/dashboard', function () {
 //Setsの一覧表示
 Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
 
-//Setの個別表示
+//Setの個別表示（レシピ一覧）
 Route::get('/sets/{set}', [SetController::class, 'show'])->name('sets.show');
-
 
 //Recipe個別表示
 Route::get('/recipe/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
 
-//Recipeの詳細表示
-/* Route::get('/sets/{set}/items/{item}', function (Item $item) {
-    return view('items.show', compact('item'));
-})->name('items.show'); */
+//Itemの一覧表示
+
+Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+
+//Itemの詳細表示
+Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
+
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
 });
 
@@ -60,14 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('items.index');
     Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
 }); */
-
-//ログイン後Itemの一覧を表示
-
-Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-
-//Itemの詳細表示
-Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
-
 
 //カート機能
 Route::prefix('cart')->middleware('auth:users')->group(function () {
