@@ -9,6 +9,7 @@
             登録情報
         </x-generic-h2>
         <div class="flex flex-col p-8 bg-gray-100 rounded-lg">
+            <p class="m-4 text-lg">お名前：{{ Auth::user()->last_name }}&emsp;{{ Auth::user()->first_name }}</p>
             <p class="m-4 text-lg">メール：{{ Auth::user()->email }}</p>
             <p class="m-4 text-lg">郵便番号：{{ Auth::user()->user_postcode }}</p>
             <p class="m-4 text-lg">住所：{{ Auth::user()->user_address }}</p>
