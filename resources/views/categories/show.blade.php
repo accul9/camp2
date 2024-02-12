@@ -21,10 +21,26 @@
                     @endforeach
                 </ul>
                 {{-- <a href="{{ route('categories.show', ['category_id' => 1]) }}">Test Category Link</a> --}}
-
             </div>
             <div class="flex flex-row flex-wrap w-3/4 p-4 -m-4">
-
+                @foreach ($items as $item)
+                    <div class="p-4 xl:w-1/1 md:w-1/3">
+                        <div class="p-8 rounded-lg shadow-lg bg-gray-50">
+                            <img class="object-cover object-center w-[270px] h-[270px] rounded-t-lg"
+                                src="{{ asset($item->item_image) }}" alt="content">
+                            <div class="pt-4 pb-4 rounded-b-lg bg-grey-50">
+                                <h2 class="mb-4 text-lg font-medium text-gray-900 title-font">{{ $item->item_name }}</h2>
+                                <a href="{{ route('items.show', $item) }}">
+                                    <h3 class="text-xs font-medium tracking-widest text-green-500 title-font">詳細を見る</h3>
+                                </a>
+                                {{-- <p class="text-base leading-relaxed">{{ $set->set_name }}</p> --}}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="mt-3">
+                {{ $items->links() }}
             </div>
         </div>
 

@@ -40,9 +40,10 @@ class CategoryController extends Controller
      */
     public function show($category_id)
     {
-        $category = Category::with('items')->where('category_id', $category_id)->firstOrFail();
+        $category = Category::findOrFail($category_id);
         $categories = Category::all();
-        return view('categories.show', compact('category', 'categories'));
+        $items = $category->items()->paginate(12);
+        return view('categories.show', compact('category', 'categories', 'items'));
     }
 
 
