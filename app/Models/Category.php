@@ -35,10 +35,12 @@ class Category extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
     public function items()
     {
-        return $this->hasMany(Item::class); // Replace Item::class with the actual model name if different
+        return $this->hasMany(Item::class, 'category_id', 'category_id');
     }
+
 
     /*
     |--------------------------------------------------------------------------

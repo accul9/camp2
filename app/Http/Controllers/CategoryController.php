@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 
 
+
 class CategoryController extends Controller
 {
     /**
@@ -13,8 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all(); // Fetch all categories from the database
-        return view('categories.index', compact('categories')); // Pass categories to the view
+        $categories = Category::all();
+        $items = $categories->items; // Fetch all categories from the database
+        return view('categories.index', compact('categories', 'items')); // Pass categories to the view
     }
 
     /**
@@ -36,10 +38,13 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($category_id)
     {
-        //
+        $category = Category::with('items')->where('category_id', $category_id)->firstOrFail();
+        $categories = Category::all();
+        return view('categories.show', compact('category', 'categories'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
