@@ -49,6 +49,10 @@ Route::get('/items', [ItemController::class, 'index'])->name('items.index');
 //Itemの詳細表示
 Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
 
+//Categoryの個別表示
+Route::get('/categories/{category_id}', 'App\Http\Controllers\CategoryController@show')->name('categories.show');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');

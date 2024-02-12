@@ -25,7 +25,7 @@
                 {{-- <a href="{{ route('categories.show', ['category_id' => 1]) }}">Test Category Link</a> --}}
                 <ul>
                     @foreach ($categories as $category)
-                        <a href="#">
+                        <a href="{{ route('categories.show', $category->category_id) }}">
                             <li class="p-2 mb-4 text-gray-900 hover:bg-[#eff5d7] hover:text-xl rounded-lg">
                                 {{ $category->name }}
                             </li>

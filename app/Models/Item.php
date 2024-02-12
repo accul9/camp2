@@ -29,7 +29,14 @@ class Item extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
+    public function show($category_id)
+    {
+        $category = Category::with('items')->where('category_id', $category_id)->first();
+        if (!$category) {
+            abort(404);
+        }
+        return view('categories.show', compact('category'));
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
