@@ -23,7 +23,7 @@
                     @endforeach
                 </ul> --}}
                 {{-- <a href="{{ route('categories.show', ['category_id' => 1]) }}">Test Category Link</a> --}}
-                {{-- <ul>
+                <ul>
                     @foreach ($categories as $category)
                         <a href="#">
                             <li class="p-2 mb-4 text-gray-900 hover:bg-[#eff5d7] hover:text-xl rounded-lg">
@@ -31,7 +31,7 @@
                             </li>
                         </a>
                     @endforeach
-                </ul> --}}
+                </ul>
 
             </div>
             <div class="flex flex-row flex-wrap w-3/4 p-4 -m-4">
@@ -53,7 +53,6 @@
                 <div class="mt-3">
                     {{ $items->links() }}
                 </div>
-
             </div>
         </div>
 

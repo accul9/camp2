@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Item;
 use App\Models\Category;
 
 
-class ItemController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $items = Item::paginate(12); // Paginate items, 12 per page
-        $categories = Category::all(); // Assuming you still want to list all categories at once
-        return view('items.index', compact('items', 'categories'));
+        $categories = Category::all(); // Fetch all categories from the database
+        return view('categories.index', compact('categories')); // Pass categories to the view
     }
 
     /**
@@ -38,11 +36,9 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-
-
-    public function show(Item $item)
+    public function show(string $id)
     {
-        return view('items.show', compact('item'));
+        //
     }
 
     /**
