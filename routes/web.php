@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
+    Route::get('/items', [ItemController::class, 'index'])->name('items.index');
 });
 
 //ログイン後Itemの一覧を表示
