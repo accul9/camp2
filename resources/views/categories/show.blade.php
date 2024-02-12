@@ -4,13 +4,14 @@
     <div class="container w-full px-5 py-24 mx-auto mt-5">
         {{-- 上半部分 --}}
         <div class="flex flex-wrap w-full pl-4 mb-20">
-            <div class="w-full mb-6 lg:w-1/2 lg:mb-0">
-                <x-generic-h1>Category: {{ $category->name }}</x-generic-h1>
+            <div class="flex flex-row items-center w-full mb-6 lg:w-1/2 lg:mb-0">
+                <x-generic-h1><a href="{{ route('items.index') }}">商品一覧</a></x-generic-h1>
+                <h2 class="mt-1 text-3xl font-medium text-gray-900"> &gt;&nbsp;{{ $category->name }}</h2>
             </div>
         </div>
         {{-- 下半部分 --}}
         <div class="flex flex-row w-full">
-            <div class="flex flex-col w-1/4 p-8 m-4 rounded-xl bg-gray-50">
+            <div class="flex flex-col w-1/4 p-8 m-4 rou&gt;nded-xl bg-gray-50">
                 <ul>
                     @foreach ($categories as $category)
                         <a href="{{ route('categories.show', $category->category_id) }}">
