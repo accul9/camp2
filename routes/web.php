@@ -52,8 +52,11 @@ Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show')
 //Categoryの個別表示
 Route::get('/categories/{category_id}', 'App\Http\Controllers\CategoryController@show')->name('categories.show');
 
+//レシピの使用食材の一覧表示
+Route::get('/recipes/{recipe_id}/items', [RecipeController::class, 'items'])->name('recipes.items');
 
 
+//ログイン後のユーザーのみのページ
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
