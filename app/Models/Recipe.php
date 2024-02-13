@@ -39,6 +39,10 @@ class Recipe extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function usedItems()
+    {
+        return $this->belongsToMany(usedItems::class)->withPivot('used_quantity', 'used_unit');
+    }
 
     /*
     |--------------------------------------------------------------------------

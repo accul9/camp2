@@ -48,6 +48,12 @@ class Item extends Model
         return $this->belongsTo(Category::class, 'category_id'); // Again, ensure the second argument is correct
     }
 
+    public function recipes()
+    {
+        return $this->belongsToMany(Recipe::class)->withPivot('used_quantity', 'used_unit');
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
