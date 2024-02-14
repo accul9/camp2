@@ -23,9 +23,9 @@
                 <span class="text-2xl">キャンプメシ</span>
             </a>
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
-                <a class="mr-5 hover:text-gray-900">Cart</a>
-                <a class="mr-5 hover:text-gray-900">My Page</a>
-                <a class="mr-5 hover:text-gray-900">Home</a>
+                <a href="{{ route('index') }}" class="mr-5 hover:text-gray-900">Home</a>
+                <a href="#" class="mr-5 hover:text-gray-900">Cart</a>
+                <a href="{{ route('profile.show') }}" class="mr-5 hover:text-gray-900">My Page</a>
             </nav>
             @if (Auth::check())
                 <form action="{{ route('logout') }}" method="POST" class="inline-flex items-center">
@@ -60,7 +60,7 @@
         <div class="container relative bottom-0 left-0 flex flex-col items-center px-5 py-2 mx-auto sm:flex-row">
             <a class="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start">
                 <img src="{{ asset('storage/logo.png') }}" alt="" class="object-contain w-12 h-12">
-                <span class="ml-3 text-xl">CampMeshi</span>
+                <span class="ml-3 text-xl">{{ config('app.name') }}</span>
             </a>
             <p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0">©
                 2024 — Group4

@@ -1,38 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- ここから編集して --}}
     <div class="container w-full px-5 py-24 mx-auto mt-5">
         {{-- 上半部分 --}}
         <div class="flex flex-wrap w-full pl-4 mb-20">
-            <div class="w-full mb-6 lg:w-1/2 lg:mb-0">
-                <x-generic-h1>個別商品一覧</x-generic-h1>
+            <div class="flex flex-row w-full mb-6 lg:w-1/2 lg:mb-0">
+                <x-generic-h1><a href="{{ route('items.index') }}">商品一覧</a></x-generic-h1>
+                <h2 class="m-5 text-3xl font-medium text-gray-900"> &gt;&nbsp;{{ $category->name }}</h2>
             </div>
         </div>
         {{-- 下半部分 --}}
         <div class="flex flex-row w-full">
+            {{-- サイドバー --}}
             <div class="flex flex-col w-1/4 p-8 m-4 rounded-xl bg-gray-50">
-                <x-generic-h2>Categories</x-generic-h2>
-                {{-- <ul>
-                    @foreach ($categories as $category)
-                        <a href="{{ route('categories.show', ['category_id' => $category->id]) }}">
-                            <li class="p-2 mb-4 text-gray-900 hover:bg-[#eff5d7] hover:text-xl rounded-lg">
-                                {{ $category->name }}
-                            </li>
-                        </a>
-                    @endforeach
-                </ul> --}}
-                {{-- <a href="{{ route('categories.show', ['category_id' => 1]) }}">Test Category Link</a> --}}
                 <ul>
                     @foreach ($categories as $category)
-                        <a href="{{ route('categories.show', $category->category_id) }}">
-                            <li class="p-2 mb-4 text-gray-900 hover:bg-[#eff5d7] hover:text-xl rounded-lg">
+                        <li class="p-2 mb-4 text-gray-900 hover:bg-[#eff5d7] hover:text-xl rounded-lg">
+                            <a href="{{ route('categories.show', $category->category_id) }}">
                                 {{ $category->name }}
-                            </li>
-                        </a>
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
-
             </div>
             <div class="flex flex-row flex-wrap w-3/4 p-4 -m-4">
                 @foreach ($items as $item)
@@ -50,12 +39,11 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="mt-3">
-                    {{ $items->links() }}
-                </div>
+            </div>
+            <div class="mt-3">
+                {{ $items->links() }}
             </div>
         </div>
-
     </div>
-    {{-- ここまで編集して --}}
 @endsection
+```

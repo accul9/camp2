@@ -36,6 +36,12 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'category_id', 'category_id');
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

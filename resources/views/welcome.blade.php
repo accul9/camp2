@@ -26,11 +26,11 @@
     <!-- @if (Route::has('login'))
                 <div class="z-10 p-6 text-right sm:fixed sm:top-0 sm:right-0">
                     @auth
-                                                                                                                                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                                                                                                                                                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
 @else
     <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
-                                                                                                                                    @if (Route::has('register'))
+                                                                                                                                                                    @if (Route::has('register'))
     <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
     @endif
                     @endauth
@@ -44,11 +44,11 @@
                     title="Additional information about the image">
             </a>
             <ul class="mainnav">
-                <li><a href="">
-                        <p class="nava">Recipe</p>
+                <li><a href="{{ route('sets.index') }}">
+                        <p class="nava">Sets</p>
                     </a></li>
-                <li><a href="">
-                        <p class="nava">Making</p>
+                <li><a href="{{ route('items.index') }}">
+                        <p class="nava">Items</p>
                     </a></li>
                 <li><a href="">
                         <p class="nava">Shop</p>
@@ -56,10 +56,10 @@
             </ul>
 
             <ul class="mainnav mainnav1">
-                <li><a href="">
+                <li><a href="{{ route('login') }}">
                         <p class="nava">login</p>
                     </a></li>
-                <li><a href="">
+                <li><a href="{{ route('register') }}">
                         <p class="nava">signup</p>
                     </a></li>
             </ul>
@@ -78,7 +78,7 @@
     </div>
 
     <nav class="screen">
-        <ul class="screen__menu">
+        <ul class="screen_menu">
             <li><a href="./index.html">Home</a></li>
             <li><a href="">Items</a></li>
             <li><a href="">News</a></li>
