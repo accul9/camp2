@@ -15,15 +15,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
-    <style>
-        ol {
-            list-style-type: decimal;
-        }
-
-        ol li {
-            margin-left: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/list.css') }}">
 </head>
 
 <body class="h-screen p-0 m-0 antialiased">
