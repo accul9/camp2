@@ -66,12 +66,16 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        $itemInCart = Cart::where('item_id', $request->item_id);
+        // \Log::debug($request->all());
+        dd($request->all());
 
-        $itemInCart = Cart::where('user_id', Auth::id())->first(); //カートに商品があるか確認
+        // $itemInCart = Cart::where('user_id', Auth::id())->first(); //カートに商品があるか確認
+        $itemInCart = Cart::where('user_id', Auth::id())->where('item_id', $request->item_id)->first();
+
 
         if ($itemInCart) {
-            +$itemInCart->quantity += $request->quantity; //合った場合した数量分追加
+            $quantity = $request->quantity ?? 1; // Default to 1 if not set
+            $itemInCart->quantity += $quantity; //合った場合した数量分追加
             $itemInCart->update();
         } else {
             if ($request->item_id) {
@@ -82,7 +86,6 @@ class CartController extends Controller
                 ]);
             }
         }
-        -dd('test');
-        +dd('テスト');
+        //dd('テスト');
     }
 }

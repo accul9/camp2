@@ -24,17 +24,36 @@
             <div class="mt-10">
                 <p class="text-xl text-gray-500">商品単位：{{ $item->item_unit }}</p>
                 <p class="my-2 text-xl text-gray-500">販売価格：&yen{{ $item->item_price }}</p>
-                <x-amount-dropdown />
 
             </div>
 
-            <div class="flex flex-row justify-start">
+            <div class="flex flex-col justify-start">
                 {{-- 購入ボタン --}}
-                <x-purchase-button :item="$item" />
-                {{-- セット一覧に戻るボタン --}}
-                <a href="{{ route('items.index') }}">
-                    <x-green-button>商品一覧に戻る</x-green-button>
-                </a>
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="item_id" value="{{ $item->item_id }}">
+                    <p class="my-5 text-xl text-gray-500">数量：
+                        <select name="quantity" id="quantity"
+                            class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded" required>
+                            @for ($i = 1; $i <= 10; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </p>
+                    <div flex flex-row>
+                        <button
+                            class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
+                            カートに追加
+                        </button>
+                        <input type="hidden" name="redirect" value="{{ route('cart.add') }}">
+                        {{-- セット一覧に戻るボタン --}}
+                        <a href="{{ route('items.index') }}">
+                            <x-green-button>商品一覧に戻る</x-green-button>
+                        </a>
+                    </div>
+                </form>
+
+
             </div>
 
 
