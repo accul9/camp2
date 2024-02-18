@@ -13,7 +13,17 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::id(); // Get the logged-in user's ID
+        // $cartItems = Cart::with('item') // Assuming a relationship method `item()` exists in Cart model
+        //     ->where('user_id', $userId)
+        //     ->get();
+        $cartItems = Cart::with('item')->where('user_id', Auth::id())->get();
+
+        $totalAmount = $cartItems->reduce(function ($carry, $item) {
+            return $carry + ($item->item->item_price * $item->quantity); // Adjust based on your item price field
+        }, 0);
+
+        return view('cart.index', compact('cartItems', 'totalAmount'));
     }
 
     /**
