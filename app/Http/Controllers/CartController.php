@@ -29,10 +29,39 @@ class CartController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function add(Request $request)
+    {
+        // \Log::debug($request->all());
+        //dd($request->all());
+
+        // $itemInCart = Cart::where('user_id', Auth::id())->first(); //カートに商品があるか確認
+        $itemInCart = Cart::where('user_id', Auth::id())->where('item_id', $request->item_id)->first();
+
+
+        if ($itemInCart) {
+            $quantity = $request->quantity ?? 1; // Default to 1 if not set
+            $itemInCart->quantity += $quantity; //合った場合した数量分追加
+            $itemInCart->update();
+        } else {
+            if ($request->item_id) {
+                Cart::create([
+                    'user_id' => Auth::id(),
+                    'item_id' => $request->item_id,
+                    'quantity' => $request->quantity
+                ]);
+
+                return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
+            }
+        }
+        //dd('テスト');
+    }
+
     public function create()
     {
         //
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -69,33 +98,20 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+    public function deleteItem($item_id)
+    {
+        $item = Cart::where('item_id', $item_id)->first();
+        if ($item) {
+            $item->delete();
+            return back()->with('success', 'Item removed from cart successfully.');
+        } else {
+            return back()->with('error', 'Item not found.');
+        }
+    }
+
     public function destroy(string $id)
     {
         //
-    }
-
-    public function add(Request $request)
-    {
-        // \Log::debug($request->all());
-        dd($request->all());
-
-        // $itemInCart = Cart::where('user_id', Auth::id())->first(); //カートに商品があるか確認
-        $itemInCart = Cart::where('user_id', Auth::id())->where('item_id', $request->item_id)->first();
-
-
-        if ($itemInCart) {
-            $quantity = $request->quantity ?? 1; // Default to 1 if not set
-            $itemInCart->quantity += $quantity; //合った場合した数量分追加
-            $itemInCart->update();
-        } else {
-            if ($request->item_id) {
-                Cart::create([
-                    'user_id' => Auth::id(),
-                    'item_id' => $request->item_id,
-                    'quantity' => $request->quantity
-                ]);
-            }
-        }
-        //dd('テスト');
     }
 }
