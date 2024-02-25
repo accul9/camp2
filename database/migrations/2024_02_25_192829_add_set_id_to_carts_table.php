@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->unsignedBigInteger('set_id')->nullable()->after('item_id');
+            // Ensure this matches the type and attributes of `set_id` in the `sets` table
+            $table->unsignedInteger('set_id')->nullable()->after('item_id');
+            // Now, the foreign key reference should be compatible
             $table->foreign('set_id')->references('set_id')->on('sets')->onDelete('set null');
         });
     }
