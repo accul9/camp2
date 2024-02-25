@@ -18,7 +18,6 @@
                 @foreach ($cartItems as $cartItem)
                     @if ($cartItem->item)
                         <div>
-                            <p>Item: {{ $cartItem->item->item_name }} - Quantity: {{ $cartItem->quantity }}</p>
                             <div class="md:flex md:items-center mb-2">
                                 <div class="md:w-3/12">画像</div>
                                 <div class="md:w-4/12 md:ml-2">{{$cartItem->item->item_name  }}商品名</div>
@@ -27,14 +26,24 @@
                                     <div>{{ $cartItem->item->item_price  }}<span class="text-sm text-gray-700">円(税込)</span></div>
                                 </div>
                                 <div class="md:w-2/12">
-                                    @include('cart.delete', ['cartItem' => $cartItem])
+                                    {{-- @include('cart.delete', ['cartItem' => $cartItem]) --}}
                                 </div>
                             </div>
                         </div>
                     @endif
                     @if ($cartItem->set)
                         <div>
-                            <p>Set: {{ $cartItem->set->set_name }} - Quantity: {{ $cartItem->quantity }}</p>
+                            <div class="md:flex md:items-center mb-2">
+                                <div class="md:w-3/12">画像</div>
+                                <div class="md:w-4/12 md:ml-2">{{$cartItem->set->set_name  }}商品名</div>
+                                <div class="md:w-3/12 flex justify-around">
+                                    <div>{{  $cartItem->quantity }}個</div>
+                                    <div>{{ $cartItem->set->set_price  }}<span class="text-sm text-gray-700">円(税込)</span></div>
+                                </div>
+                                <div class="md:w-2/12">
+                                    {{-- @include('cart.delete', ['cartItem' => $cartItem]) --}}
+                                </div>
+                            </div>
                         </div>
                     @endif
                 @endforeach
