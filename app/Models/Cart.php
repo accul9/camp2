@@ -50,7 +50,6 @@ class Cart extends Model
     {
         return $this->belongsTo('App\Models\Set', 'set_id');
     }
-}
 
     /*
     |--------------------------------------------------------------------------

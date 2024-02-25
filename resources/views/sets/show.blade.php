@@ -40,7 +40,13 @@
 
             <div class="flex flex-row justify-start">
                 {{-- 購入ボタン --}}
-                <x-purchase-button :item="$set" />
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="set_id" value="{{ $set->set_id }}">
+                    <!-- Assuming $set is your set model -->
+                    <button type="submit" class="btn btn-primary">Purchase</button>
+                </form>
+
                 {{-- セット一覧に戻るボタン --}}
                 <a href="{{ route('sets.index') }}">
                     <button

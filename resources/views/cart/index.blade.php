@@ -3,7 +3,20 @@
 @section('content')
     <div class="w-full px-5 py-24 m-5 mx-auto">
         <h2>カート一覧</h2>
-        <table class="w-2/3 mt-5 table-fixed">
+        @foreach ($cartItems as $cartItem)
+            @if ($cartItem->item)
+                <div>
+                    <p>Item: {{ $cartItem->item->item_name }} - Quantity: {{ $cartItem->quantity }}</p>
+                </div>
+            @endif
+            @if ($cartItem->set)
+                <div>
+                    <p>Set: {{ $cartItem->set->set_name }} - Quantity: {{ $cartItem->quantity }}</p>
+                </div>
+            @endif
+        @endforeach
+
+        {{-- <table class="w-2/3 mt-5 table-fixed">
             <thead>
                 <tr>
                     <th class="border border-slate-600 ">品名</th>
@@ -16,14 +29,11 @@
                 @foreach ($cartItems as $cartItem)
                     <tr>
                         <td class="border-solid border-slate-600 ">{{ $cartItem->item->item_name }}</td>
-                        {{-- Adjust based on your item name field --}}
                         <td class="border-solid border-slate-600">{{ $cartItem->quantity }}</td>
                         <td class="border-solid border-slate-600 ">{{ $cartItem->item->item_price }}</td>
-                        {{-- Adjust formatting as needed --}}
                         <td class="border-solid border-slate-600 ">{{ $cartItem->quantity * $cartItem->item->item_price }}
                         </td>
                         <td>
-                            <!-- Delete button -->
                             <form action="{{ route('cart.delete', $cartItem->item_id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -35,7 +45,7 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>
-        <h3 class="m-5 font-bold">合計: &yen;{{ $totalAmount }}</h3>
+        </table> --}}
+        {{-- <h3 class="m-5 font-bold">合計: &yen;{{ $totalAmount }}</h3> --}}
     </div>
 @endsection

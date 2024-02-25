@@ -14,17 +14,27 @@ class CartController extends Controller
     public function index()
     {
         $userId = Auth::id(); // Get the logged-in user's ID
-        // $cartItems = Cart::with('item') // Assuming a relationship method `item()` exists in Cart model
-        //     ->where('user_id', $userId)
-        //     ->get();
-        $cartItems = Cart::with('item')->where('user_id', Auth::id())->get();
+        $cartItems = Cart::with(['item', 'set'])->where('user_id', $userId)->get();
 
-        $totalAmount = $cartItems->reduce(function ($carry, $item) {
-            return $carry + ($item->item->item_price * $item->quantity); // Adjust based on your item price field
-        }, 0);
+        $totalAmount = 0;
+
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem->item) {
+                // Calculate total for individual items
+                $totalAmount += $cartItem->item->item_price * $cartItem->quantity;
+            }
+
+            if ($cartItem->set) {
+                // Assuming you have a method to calculate the total price of a set
+                // This could be a method in your Set model that sums up the price of all items in the set
+                // For simplicity, let's assume each set has a flat price stored in a `price` attribute
+                $totalAmount += $cartItem->set->price * $cartItem->quantity;
+            }
+        }
 
         return view('cart.index', compact('cartItems', 'totalAmount'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,62 +42,54 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        // \Log::debug($request->all());
-        //dd($request->all());
+        $userId = Auth::id(); // Get the logged-in user's ID
 
-        // $itemInCart = Cart::where('user_id', Auth::id())->first(); //カートに商品があるか確認
-        $itemInCart = Cart::where('user_id', Auth::id())->where('item_id', $request->item_id)->first();
+        if ($request->has('item_id')) {
+            // Adding an individual item to the cart
+            $itemInCart = Cart::where('user_id', $userId)
+                ->where('item_id', $request->item_id)
+                ->first();
 
-
-        if ($itemInCart) {
-            $quantity = $request->quantity ?? 1; // Default to 1 if not set
-            $itemInCart->quantity += $quantity; //合った場合した数量分追加
-            $itemInCart->update();
-        } else {
-            if ($request->item_id) {
+            if ($itemInCart) {
+                $itemInCart->quantity += $request->quantity ?? 1; // Increment existing quantity
+                $itemInCart->update();
+            } else {
                 Cart::create([
-                    'user_id' => Auth::id(),
+                    'user_id' => $userId,
                     'item_id' => $request->item_id,
-                    'quantity' => $request->quantity
+                    'quantity' => $request->quantity ?? 1,
+                    // No 'set_id' since this is an individual item
                 ]);
-
-                return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
             }
-        }
-        //dd('テスト');
-    }
+        } elseif ($request->has('set_id')) {
+            // Adding an entire set to the cart
+            $setInCart = Cart::where('user_id', $userId)
+                ->where('set_id', $request->set_id)
+                ->first();
 
-    public function addSet(Request $request)
-    {
-        $setId = $request->set_id; // Assume you're passing a `set_id` parameter
-        $set = Set::with('recipes.items')->findOrFail($setId); // Fetch the set with all recipes and items
+            \Log::debug('Request data:', $request->all());
 
-        // Logic to add all items from the set to the cart
-        foreach ($set->recipes as $recipe) {
-            foreach ($recipe->items as $item) {
-                // Check if the item is already in the cart
-                $itemInCart = Cart::where('user_id', Auth::id())
-                    ->where('item_id', $item->id)
-                    ->first();
 
-                if ($itemInCart) {
-                    // Update quantity if the item is already in the cart
-                    $itemInCart->quantity += 1; // This assumes you're adding one set at a time
-                    $itemInCart->update();
-                } else {
-                    // Add new item to the cart if not already present
-                    Cart::create([
-                        'user_id' => Auth::id(),
-                        'item_id' => $item->id,
-                        'quantity' => 1, // This assumes each item from the set is added once
-                        'set_id' => $setId // Associate this cart entry with the set
-                    ]);
-                }
+
+            if ($setInCart) {
+                $setInCart->quantity += $request->quantity ?? 1; // Increment existing quantity
+                $setInCart->update();
+            } else {
+                Cart::create([
+                    'user_id' => $userId,
+                    'set_id' => $request->set_id,
+                    'quantity' => $request->quantity ?? 1,
+                    // No 'item_id' since this is a set
+                ]);
             }
+        } else {
+            // Handle case where neither item_id nor set_id is provided
+            return back()->with('error', 'No item or set specified.');
         }
 
-        return redirect()->route('cart.index')->with('success', 'Set added to cart successfully.');
+        return redirect()->route('cart.index')->with('success', 'Product added to cart successfully.');
     }
+
 
 
     public function create()
