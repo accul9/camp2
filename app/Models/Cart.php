@@ -20,6 +20,7 @@ class Cart extends Model
     protected $fillable = [
         'user_id',
         'item_id',
+        'set_id',
         'quantity'
     ];
 
@@ -43,6 +44,14 @@ class Cart extends Model
     {
         return $this->belongsTo('App\Models\Item', 'item_id');
     }
+
+    //Setのリレーションを追加
+    public function set()
+    {
+        return $this->belongsTo('App\Models\Set', 'set_id');
+    }
+}
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
