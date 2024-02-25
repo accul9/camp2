@@ -57,6 +57,39 @@ class CartController extends Controller
         //dd('テスト');
     }
 
+    public function addSet(Request $request)
+    {
+        $setId = $request->set_id; // Assume you're passing a `set_id` parameter
+        $set = Set::with('recipes.items')->findOrFail($setId); // Fetch the set with all recipes and items
+
+        // Logic to add all items from the set to the cart
+        foreach ($set->recipes as $recipe) {
+            foreach ($recipe->items as $item) {
+                // Check if the item is already in the cart
+                $itemInCart = Cart::where('user_id', Auth::id())
+                    ->where('item_id', $item->id)
+                    ->first();
+
+                if ($itemInCart) {
+                    // Update quantity if the item is already in the cart
+                    $itemInCart->quantity += 1; // This assumes you're adding one set at a time
+                    $itemInCart->update();
+                } else {
+                    // Add new item to the cart if not already present
+                    Cart::create([
+                        'user_id' => Auth::id(),
+                        'item_id' => $item->id,
+                        'quantity' => 1, // This assumes each item from the set is added once
+                        'set_id' => $setId // Associate this cart entry with the set
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Set added to cart successfully.');
+    }
+
+
     public function create()
     {
         //
