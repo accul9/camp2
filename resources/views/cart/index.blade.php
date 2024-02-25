@@ -19,7 +19,14 @@
                     @if ($cartItem->item)
                         <div>
                             <div class="md:flex md:items-center mb-2">
-                                <div class="md:w-3/12">画像</div>
+                                <div class="md:w-3/12">
+                                    画像
+                                    @if($cartItem->item->item_image)
+                                        <img src="{{ asset('storage/' . $cartItem->item->item_image) }}" alt="商品画像" class="w-20 h-20 object-cover">
+                                    @else
+                                        <img src="">
+                                    @endif
+                                </div>
                                 <div class="md:w-4/12 md:ml-2">{{$cartItem->item->item_name  }}商品名</div>
                                 <div class="md:w-3/12 flex justify-around">
                                     <div>{{  $cartItem->quantity }}個</div>
@@ -34,7 +41,15 @@
                     @if ($cartItem->set)
                         <div>
                             <div class="md:flex md:items-center mb-2">
-                                <div class="md:w-3/12">画像</div>
+                                <div class="md:w-3/12">
+                                    画像
+                                    @if ([] !== $cartItem->set->set_image)
+                                        <img src="{{ asset('storage/' . $cartItem->set->set_image) }}" alt="商品画像" class="w-20 h-20 object-cover">
+                                        
+                                    @else
+                                        <img src="">
+                                    @endif
+                                </div>
                                 <div class="md:w-4/12 md:ml-2">{{$cartItem->set->set_name  }}商品名</div>
                                 <div class="md:w-3/12 flex justify-around">
                                     <div>{{  $cartItem->quantity }}個</div>
@@ -47,7 +62,21 @@
                         </div>
                     @endif
                 @endforeach
+                <div class="my-2">
+                    合計:{{ $totalAmount }}円(税込) 
+                </div>
+                <div>
+                    {{-- <button onclick="location.href='{{route('cart.checkout')}}'"class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600"> --}}
+                        購入する
+                    </button>
+                    <button onclick="window.history.back();" class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
+                        戻る
+                    </button>
+                </div>
             </div>
-        @endif
-    </div>
+        </div>
+        
+    @endif
+</div>
 @endsection
+
