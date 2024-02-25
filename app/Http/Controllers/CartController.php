@@ -28,7 +28,7 @@ class CartController extends Controller
                 // Assuming you have a method to calculate the total price of a set
                 // This could be a method in your Set model that sums up the price of all items in the set
                 // For simplicity, let's assume each set has a flat price stored in a `price` attribute
-                $totalAmount += $cartItem->set->price * $cartItem->quantity;
+                $totalAmount += $cartItem->set->set_price * $cartItem->quantity;
             }
         }
 
