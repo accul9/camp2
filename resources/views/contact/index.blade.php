@@ -6,7 +6,7 @@
             <div class="flex flex-col w-full mb-12 text-center">
                 <h1 class="mb-4 text-2xl font-medium text-gray-900 sm:text-3xl title-font">Contact Us</h1>
             </div>
-            <form action="POST" action = "{{ route('contact.confirm') }}">
+            <form method="POST" action="{{ route('contact.confirm') }}">
                 @csrf
 
                 <div class="mx-auto lg:w-1/2 md:w-2/3">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="w-full p-2">
-                            <button
+                            <button type="submit"
                                 class="flex px-8 py-2 mx-auto text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">入力内容確認</button>
                         </div>
                     </div>

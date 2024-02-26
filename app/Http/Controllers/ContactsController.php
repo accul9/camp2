@@ -11,7 +11,19 @@ class ContactsController extends Controller
         return view('contact.index');
     }
 
-    /* public function confirm(Request $request)
+    public function confirm(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'email' => 'required|email',
+            'body' => 'required',
+        ]);
+
+        $inputs = $request->all();
+
+        return view('contact.confirm', compact('inputs'));
+    }/* public function confirm(Request $request)
     {
         $contact = $request->all();
         return view('contact.confirm', compact('contact'));

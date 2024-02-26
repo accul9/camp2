@@ -77,8 +77,8 @@ Route::delete('/cart/delete', [CartController::class, 'delete'])->name('cart.del
 //入力フォームページ
 Route::get('/contact', [ContactsController::class, 'index'])->name('contact.index');
 //確認フォームページ
-Route::post('/contact/confirm', 'ContactsController@confirm')->name('contact.confirm');
+Route::post('/contact/confirm', [ContactsController::class, 'confirm'])->name('contact.confirm');
 //送信完了ページ
-Route::post('/contact/thanks', 'ContactsController@send')->name('contact.send');
+Route::post('/contact/thanks', [ContactsController::class, 'send'])->name('contact.send');
 
 require __DIR__ . '/auth.php';
