@@ -8,11 +8,28 @@
                 <div>
                     <p>Item: {{ $cartItem->item->item_name }} - Quantity: {{ $cartItem->quantity }}</p>
                 </div>
+                <!-- Delete button -->
+                <form action="{{ route('cart.delete', $cartItem->item_id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
+                    <button type="submit" class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                        onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
             @endif
             @if ($cartItem->set)
                 <div>
                     <p>Set: {{ $cartItem->set->set_name }} - Quantity: {{ $cartItem->quantity }}</p>
                 </div>
+                <!-- Delete button -->
+                <form action="{{ route('cart.delete', $cartItem->set_id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <input type="hidden" name="set_id" value="{{ $cartItem->set_id }}">
+                    <button type="submit" class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                        onclick="return confirm('Are you sure?')">Delete</button>
+
+                </form>
             @endif
         @endforeach
 
