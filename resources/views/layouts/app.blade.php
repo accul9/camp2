@@ -59,7 +59,8 @@
             </a>
             <p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0">©
                 2024 — Group4
-                <a href="#.html" class="ml-1 text-gray-600" rel="noopener noreferrer" target="_blank">Contact Us</a>
+                <a href="{{ route('contact.index') }}" class="ml-1 text-gray-600" rel="noopener noreferrer"
+                    target="_blank">Contact Us</a>
             </p>
         </div>
     </footer>
