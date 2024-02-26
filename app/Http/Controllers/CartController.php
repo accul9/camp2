@@ -95,16 +95,34 @@ class CartController extends Controller
      * Remove the specified resource from storage.
      */
 
-    public function deleteItem($item_id)
-    {
-        $item = Cart::where('item_id', $item_id)->first();
-        if ($item) {
-            $item->delete();
-            return back()->with('success', 'Item removed from cart successfully.');
-        } else {
-            return back()->with('error', 'Item not found.');
-        }
-    }
+     public function delete(Request $request)
+     {
+         $userId = Auth::id();
+         if ($request->has('item_id')) {
+             $itemInCart = Cart::where('user_id', $userId)
+                 ->where('item_id', $request->item_id)
+                 ->first();
+             if ($itemInCart) {
+                 $itemInCart->delete();
+             } else {
+                 return back()->with('error', 'Item not found.');
+             }
+         } elseif ($request->has('set_id')) {
+             $setInCart = Cart::where('user_id', $userId)
+                 ->where('set_id', $request->set_id)
+                 ->first();
+             if ($setInCart) {
+                 $setInCart->delete();
+             } else {
+                 return back()->with('error', 'Set not found.');
+             }
+         } else {
+             return back()->with('error', 'No item or set specified.');
+         }
+ 
+         return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
+     }
+ 
 
 
 
