@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/delete', [CartController::class, 'delete'])->name('cart.delete');
+//Route::get('/cart/paid', [CartController::class, 'paid'])->name('cart.paid');
 
 
 //メール機能
