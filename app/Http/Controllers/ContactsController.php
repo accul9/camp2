@@ -51,7 +51,7 @@ class ContactsController extends Controller
             //メール送信処理
             \Mail::to($inputs['email'])
                 ->send(new ContactsSendmail($inputs));
-            \Mail::to('contabile@gmail.com')
+            \Mail::to(config('mail.from.address'))
                 ->send(new ContactsSendmail($inputs));
             //二重送信を防ぐためにトークンを再発行
             $request->session()->regenerateToken();
