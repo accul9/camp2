@@ -8,46 +8,42 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class ContactsSendmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $email;
+    private $name;
+    private $title;
+    private $body;
+
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($inputs)
     {
-        //
+        $this->email = $inputs['email'];
+        $this->name = $inputs['name'];
+        $this->title = $inputs['title'];
+        $this->body = $inputs['body'];
     }
 
     /**
-     * Get the message envelope.
+     * Build the message.
      */
-    public function envelope(): Envelope
+    public function build()
     {
-        return new Envelope(
-            subject: 'Contacts Sendmail',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
+        return $this->from('contabile@gmail.com')
+            ->subject('CampMeshi自動返信メール')
+            ->view('contact.mail')
+            ->with([
+                'email' => $this->email,
+                'name' => $this->name,
+                'title' => $this->title,
+                'body' => $this->body,
+            ]);
     }
 }
