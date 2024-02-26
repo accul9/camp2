@@ -6,9 +6,9 @@
             <div class="flex flex-col w-full mb-12 text-center">
                 <h1 class="mb-4 text-2xl font-medium text-gray-900 sm:text-3xl title-font">Contact Us</h1>
             </div>
-            <form action="POST" action = "{{ route('contact.send') }}">
-                @csrf
 
+            <form method="POST" action = "{{ route('contact.send') }}">
+                @csrf
                 <div class="mx-auto lg:w-1/2 md:w-2/3">
                     <div class="flex flex-wrap -m-2">
                         <div class="w-1/2 p-2">
@@ -42,7 +42,7 @@
                             <button type="submit" name="action" value="back"
                                 class="flex px-8 py-2 mx-2 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">入力内容修正
                             </button>
-                            <button type="submit" name="action" value="submite"
+                            <button type="submit" name="action" value="submit"
                                 class="flex px-8 py-2 mx-2 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">送信</button>
                         </div>
                     </div>

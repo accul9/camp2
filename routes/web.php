@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/delete', [CartController::class, 'delete'])->name('cart.delete');
+//Route::get('/cart/paid', [CartController::class, 'paid'])->name('cart.paid');
 
 
 //メール機能
@@ -79,6 +80,11 @@ Route::get('/contact', [ContactsController::class, 'index'])->name('contact.inde
 //確認フォームページ
 Route::post('/contact/confirm', [ContactsController::class, 'confirm'])->name('contact.confirm');
 //送信完了ページ
-Route::post('/contact/thanks', [ContactsController::class, 'send'])->name('contact.send');
+Route::post('/contact/thanks', [ContactsController::class, 'send'])->name('contact.send');;
+
+Route::get('/contact/thanks', function () {
+    return view('contact.thanks');
+})->name('contact.thanks');
+
 
 require __DIR__ . '/auth.php';
