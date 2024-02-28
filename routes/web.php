@@ -78,10 +78,9 @@ Route::middleware('auth')->group(function () {
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/delete/', [CartController::class, 'delete'])->name('cart.delete');
-    Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-    Route::get('success', [CartController::class, 'success'])->name('cart.success');
-//     Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
-// });
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::get('success', [CartController::class, 'success'])->name('cart.success');
+Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 
 Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']);
 Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']);

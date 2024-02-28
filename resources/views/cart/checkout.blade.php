@@ -10,7 +10,7 @@
         stripe.redirectToCheckout({
             sessionId: '{{ $session->id }}'
         }).then(function (result) {
-            window.location.href = '{{ route('item.index') }}';
+            window.location.href = '{{ route('cart.cancel') }}';
         });
     };
 </script>

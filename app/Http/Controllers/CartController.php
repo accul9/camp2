@@ -168,7 +168,7 @@ class CartController extends Controller
              'line_items' => $lineItems,
              'mode' => 'payment',
              'success_url' => route('cart.success'),
-             'cancel_url' => route('cart.index')
+             'cancel_url' => route('cart.cancel')
          ]);
      
          $publicKey = env('STRIPE_PUBLIC_KEY');
@@ -182,6 +182,10 @@ class CartController extends Controller
         return redirect()->route('items.index')->with('success', 'Payment successful.');
     }
 
+    public function cancel()
+    {
+        return redirect()->route('cart.index')->with('error', 'Payment cancelled.');
+    }
 
 
     public function create()
