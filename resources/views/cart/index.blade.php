@@ -77,7 +77,7 @@
                 合計:{{ $totalAmount }}円(税込) 
             </div>
             <div>
-                {{-- <button onclick="location.href='{{route('cart.checkout')}}'" class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600"> --}}
+                <button onclick="location.href='{{route('cart.checkout')}}'" class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
                     購入する
                 </button>
                 <button onclick="window.history.back();" class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">

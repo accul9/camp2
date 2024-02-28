@@ -159,7 +159,7 @@ class CartController extends Controller
                 array_push($lineItems, $lineItem);
             }
         }
-            dd($lineItems);
+            // dd($lineItems);
      
          \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
      
@@ -167,7 +167,7 @@ class CartController extends Controller
              'payment_method_types' => ['card'],
              'line_items' => $lineItems,
              'mode' => 'payment',
-             'success_url' => route('cart.index'),
+             'success_url' => route('cart.success'),
              'cancel_url' => route('cart.index')
          ]);
      
