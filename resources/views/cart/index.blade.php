@@ -39,7 +39,7 @@
                             @method('delete')
                             <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
                             <button type="submit" class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-                                onclick="return confirm('Are you sure?')">Delete</button>
+                                onclick="return confirm('Are you sure?')">削除</button>
                         </form>
                     </div>
                 @endif
@@ -67,7 +67,7 @@
                             @method('delete')
                             <input type="hidden" name="set_id" value="{{ $cartItem->set_id }}">
                             <button type="submit" class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-                                onclick="return confirm('Are you sure?')">Delete</button>
+                                onclick="return confirm('Are you sure?')">削除</button>
                         </form>
                     </div>
                 @endif 

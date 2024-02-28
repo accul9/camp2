@@ -44,13 +44,12 @@
                     @csrf
                     <input type="hidden" name="set_id" value="{{ $set->set_id }}">
                     <!-- Assuming $set is your set model -->
-                    <button type="submit" class="btn btn-primary">Purchase</button>
+                    <button type="submit" class="fflex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">カートに追加</button>
                 </form>
 
                 {{-- セット一覧に戻るボタン --}}
                 <a href="{{ route('sets.index') }}">
-                    <button
-                        class="flex w-[210px] justify-center px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">セット一覧に戻る</button>
+                    <x-green-button class="flex w-[210px] justify-center px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">セット一覧に戻る</x-green-button>
                 </a>
             </div>
         </div>

@@ -95,32 +95,85 @@ class CartController extends Controller
      * Remove the specified resource from storage.
      */
 
-     public function delete(Request $request)
-     {
-         $userId = Auth::id();
-         if ($request->has('item_id')) {
-             $itemInCart = Cart::where('user_id', $userId)
-                 ->where('item_id', $request->item_id)
-                 ->first();
-             if ($itemInCart) {
-                 $itemInCart->delete();
-             } else {
-                 return back()->with('error', 'Item not found.');
-             }
-         } elseif ($request->has('set_id')) {
-             $setInCart = Cart::where('user_id', $userId)
-                 ->where('set_id', $request->set_id)
-                 ->first();
-             if ($setInCart) {
-                 $setInCart->delete();
-             } else {
-                 return back()->with('error', 'Set not found.');
-             }
-         } else {
-             return back()->with('error', 'No item or set specified.');
-         }
+    public function delete(Request $request)
+    {
+        $userId = Auth::id();
+        if ($request->has('item_id')) {
+            $itemInCart = Cart::where('user_id', $userId)
+                ->where('item_id', $request->item_id)
+                ->first();
+            if ($itemInCart) {
+                $itemInCart->delete();
+            } else {
+                return back()->with('error', 'Item not found.');
+            }
+        } elseif ($request->has('set_id')) {
+            $setInCart = Cart::where('user_id', $userId)
+                ->where('set_id', $request->set_id)
+                ->first();
+            if ($setInCart) {
+                $setInCart->delete();
+            } else {
+                return back()->with('error', 'Set not found.');
+            }
+        } else {
+            return back()->with('error', 'No item or set specified.');
+        }
  
-         return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
+        return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
+    }
+
+
+    public function checkout()
+    {
+        $userId = Auth::id();
+        $cartItems = Cart::with(['item', 'set'])->where('user_id', $userId)->get();
+    
+        $lineItems = [];
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem->item) {
+                $lineItem = [
+                    'price_data' => [
+                        'currency' => 'jpy',
+                        'product_data' => [
+                            'name' => $cartItem->item->item_name,
+                            'description' => $cartItem->item->item_description,
+                        ],
+                        'unit_amount' => $cartItem->item->item_price,
+                    ],
+                    'quantity' => $cartItem->quantity,
+                ];
+                array_push($lineItems, $lineItem);
+            } elseif ($cartItem->set) {
+                $lineItem = [
+                    'price_data' => [
+                        'currency' => 'jpy',
+                        'product_data' => [
+                            'name' => $cartItem->set->set_name,
+                            'description' => $cartItem->set->set_description,
+                        ],
+                        'unit_amount' => $cartItem->set->set_price,
+                    ],
+                    'quantity' => $cartItem->quantity,
+                ];
+                array_push($lineItems, $lineItem);
+            }
+        }
+            dd($lineItems);
+     
+         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+     
+         $session = \Stripe\Checkout\Session::create([
+             'payment_method_types' => ['card'],
+             'line_items' => $lineItems,
+             'mode' => 'payment',
+             'success_url' => route('cart.index'),
+             'cancel_url' => route('cart.index')
+         ]);
+     
+         $publicKey = env('STRIPE_PUBLIC_KEY');
+     
+         return view('cart.checkout', compact('session', 'publicKey'));
      }
  
 
