@@ -33,6 +33,19 @@
                             <div>{{ $cartItem->quantity }}個</div>
                             <div>{{ $cartItem->item->item_price }}<span class="text-sm text-gray-700">円(税込)</span></div>
                         </div>
+                        <!-- Quantity change form -->
+                        <form action="{{ route('cart.update', $cartItem->item_id) }}" method="PUT">
+                            @csrf
+                            <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
+                            <p class="my-5 text-xl text-gray-500">数量：
+                                <select name="quantity" id="quantity" class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
+                                    @for ($i = 1; $i <= 10; $i++)
+                                        <option value="{{ $i }}" @if($i == $cartItem->quantity) selected @endif>{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </p>
+                            <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">更新</button>
+                        </form>
                         <!-- Delete button -->
                         <form action="{{ route('cart.delete', $cartItem->item_id) }}" method="POST">
                             @csrf
@@ -61,6 +74,19 @@
                             <div>{{ $cartItem->quantity }}個</div>
                             <div>{{ $cartItem->set->set_price }}<span class="text-sm text-gray-700">円(税込)</span></div>
                         </div>
+                        <!-- Quantity change form -->
+                        <form action="{{ route('cart.update', $cartItem->set_id) }}" method="PUT">
+                            @csrf
+                            <input type="hidden" name="set_id" value="{{ $cartItem->set_id }}">
+                            <p class="my-5 text-xl text-gray-500">数量：
+                                <select name="quantity" id="quantity" class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
+                                    @for ($i = 1; $i <= 10; $i++)
+                                        <option value="{{ $i }}" @if($i == $cartItem->quantity) selected @endif>{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </p>
+                            <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">更新</button>
+                        </form>
                         <!-- Delete button -->
                         <form action="{{ route('cart.delete', $cartItem->set_id) }}" method="POST">
                             @csrf

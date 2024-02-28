@@ -223,7 +223,29 @@ class CartController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // バリデーション
+        $request->validate([
+            'quantity' => 'required|integer|min:1|max:10',
+        ]);
+    
+        // カートからアイテムを取得
+        $cartItem = Cart::where('user_id', Auth::id())
+                        ->where(function ($query) use ($id) {
+                            $query->where('item_id', $id)
+                                  ->orWhere('set_id', $id);
+                        })
+                        ->first();
+    
+        // アイテムが存在しない場合はエラー
+        if (!$cartItem) {
+            return redirect()->back()->with('error', 'Cart item not found.');
+        }
+    
+        // 数量を更新
+        $cartItem->quantity = $request->quantity;
+        $cartItem->save();
+    
+        return redirect()->back()->with('success', 'Cart item updated successfully.');
     }
 
 

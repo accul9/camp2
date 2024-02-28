@@ -80,6 +80,7 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/delete/', [CartController::class, 'delete'])->name('cart.delete');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 Route::get('success', [CartController::class, 'success'])->name('cart.success');
+Route::get('/cart/{id}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
 Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 
 Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']);

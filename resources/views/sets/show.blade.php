@@ -29,28 +29,38 @@
                 {{ $set->set_description }}
             </p>
             <p class="text-xl text-gray-500">販売価格：&yen{{ $set->set_price }}</p>
-            <p class="my-5 text-xl text-gray-500">数量：
+            {{-- <p class="my-5 text-xl text-gray-500">数量：
                 <select name="quantity" id="quantity" class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
                     @for ($i = 1; $i <= 10; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
-            </p>
+            </p> --}}
 
 
-            <div class="flex flex-row justify-start">
+            <div class="flex flex-col justify-start">
                 {{-- 購入ボタン --}}
                 <form action="{{ route('cart.add') }}" method="POST">
                     @csrf
                     <input type="hidden" name="set_id" value="{{ $set->set_id }}">
+                    <p class="my-5 text-xl text-gray-500">数量：
+                        <select name="quantity" id="quantity" class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
+                            @for ($i = 1; $i <= 10; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </p>
                     <!-- Assuming $set is your set model -->
-                    <button type="submit" class="fflex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">カートに追加</button>
+                    <button type="submit" class="flex w-[210px] justify-center mr-10 mt-10 px-8 py-2 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">カートに追加</button>
+                    <input type="hidden" name="redirect" value="{{ route('cart.add') }}">
                 </form>
 
-                {{-- セット一覧に戻るボタン --}}
-                <a href="{{ route('sets.index') }}">
-                    <x-green-button class="flex w-[210px] justify-center px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">セット一覧に戻る</x-green-button>
-                </a>
+                <div>
+                    {{-- セット一覧に戻るボタン --}}
+                    <a href="{{ route('sets.index') }}">
+                        <x-green-button class="flex w-[210px] justify-center px-8 py-2  text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">セット一覧に戻る</x-green-button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
