@@ -176,6 +176,11 @@ class CartController extends Controller
          return view('cart.checkout', compact('session', 'publicKey'));
      }
  
+    public function success()
+    {
+        Cart::where('user_id', Auth::id())->delete();
+        return redirect()->route('items.index')->with('success', 'Payment successful.');
+    }
 
 
 
