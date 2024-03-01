@@ -225,7 +225,7 @@ class CartController extends Controller
     {
         // バリデーション
         $request->validate([
-            'quantity' => 'required|integer|min:1|max:10',
+            'quantity' => 'required|integer|min:-10|max:10',
         ]);
     
         // カートからアイテムを取得
@@ -242,7 +242,8 @@ class CartController extends Controller
         }
     
         // 数量を更新
-        $cartItem->quantity = $request->quantity;
+        $cartItem->quantity += $request->quantity;
+        $cartItem->quantity = max(0, $cartItem->quantity); // 数量が0未満にならないようにする
         $cartItem->save();
     
         return redirect()->back()->with('success', 'Cart item updated successfully.');
