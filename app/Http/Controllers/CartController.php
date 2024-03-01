@@ -161,18 +161,6 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
     }
 
-
-    /*    public function deleteItem($item_id)
-    {
-        $item = Cart::where('item_id', $item_id)->first();
-        if ($item) {
-            $item->delete();
-            return back()->with('success', 'Item removed from cart successfully.');
-        } else {
-            return back()->with('error', 'Item not found.');
-        }
-    } */
-
     public function destroy(string $id)
     {
         //

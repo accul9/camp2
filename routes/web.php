@@ -73,6 +73,11 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/delete', [CartController::class, 'delete'])->name('cart.delete');
 //Route::get('/cart/paid', [CartController::class, 'paid'])->name('cart.paid');
 
+//購入履歴一覧機能
+Route::post('/orders/create', [OrderController::class, 'createOrder'])->name('orders.create')->middleware('auth');
+Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show')->middleware('auth');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index')->middleware('auth');
+
 
 //メール機能
 //入力フォームページ
