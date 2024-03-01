@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "b4ca59b71443d0cd01bfec897529fe47",
+=======
+    "content-hash": "e318b7f17a06c2757f64a4ab25d3b4d7",
+>>>>>>> c770a049185e773c5654724eeea2e470f39c8126
     "packages": [
         {
             "name": "backpack/basset",
@@ -4529,6 +4533,7 @@
         },
         {
             "name": "stripe/stripe-php",
+<<<<<<< HEAD
             "version": "v13.13.0",
             "source": {
                 "type": "git",
@@ -4539,6 +4544,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/stripe/stripe-php/zipball/8dc58bab25f222a74d1157d4ca9e9e48451dd0c1",
                 "reference": "8dc58bab25f222a74d1157d4ca9e9e48451dd0c1",
+=======
+            "version": "v13.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "8052da9058caae10c7297f85821f652b38e31d85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/8052da9058caae10c7297f85821f652b38e31d85",
+                "reference": "8052da9058caae10c7297f85821f652b38e31d85",
+>>>>>>> c770a049185e773c5654724eeea2e470f39c8126
                 "shasum": ""
             },
             "require": {
@@ -4582,9 +4599,15 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/stripe/stripe-php/tree/v13.13.0"
             },
             "time": "2024-02-29T20:22:15+00:00"
+=======
+                "source": "https://github.com/stripe/stripe-php/tree/v13.12.0"
+            },
+            "time": "2024-02-22T22:19:58+00:00"
+>>>>>>> c770a049185e773c5654724eeea2e470f39c8126
         },
         {
             "name": "symfony/console",
@@ -9677,5 +9700,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
