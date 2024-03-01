@@ -70,8 +70,16 @@ Route::middleware('auth')->group(function () {
 //カート機能
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::delete('/cart/delete', [CartController::class, 'delete'])->name('cart.delete');
-//Route::get('/cart/paid', [CartController::class, 'paid'])->name('cart.paid');
+Route::delete('/cart/delete/', [CartController::class, 'delete'])->name('cart.delete');
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::get('success', [CartController::class, 'success'])->name('cart.success');
+Route::get('/cart/{id}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
+
+Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']);
+Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']);
+Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
+Route::get('/serviceprovidertest', [LifeCycleTestController::class, 'showServiceProviderTest']);
 
 //購入履歴一覧機能
 Route::post('/orders/create', [OrderController::class, 'createOrder'])->name('orders.create')->middleware('auth');
@@ -90,6 +98,5 @@ Route::post('/contact/thanks', [ContactsController::class, 'send'])->name('conta
 Route::get('/contact/thanks', function () {
     return view('contact.thanks');
 })->name('contact.thanks');
-
 
 require __DIR__ . '/auth.php';
