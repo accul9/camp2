@@ -79,10 +79,10 @@
 
     <nav class="screen">
         <ul class="screen_menu">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="">Items</a></li>
-            <li><a href="">News</a></li>
-            <li><a href="">Login</a></li>
+            <li><a href="{{ route('index') }}">Home</a></li>
+            <li><a href="{{ route('items.index') }}">Items</a></li>
+            <li><a href="{{ route('sets.index') }}">Sets</a></li>
+            <li><a href="{{ route('index') }}">Login</a></li>
         </ul>
     </nav>
 

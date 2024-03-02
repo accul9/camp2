@@ -123,7 +123,7 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
     }
 
-    
+
 
     public function checkout()
     {
@@ -180,12 +180,18 @@ class CartController extends Controller
     public function success()
     {
         Cart::where('user_id', Auth::id())->delete();
-        return redirect()->route('items.index')->with('success', 'Payment successful.');
+        return redirect()->route('cart.payment_completed')->with('success', 'Payment successful.');
     }
 
     public function cancel()
     {
         return redirect()->route('cart.index')->with('error', 'Payment cancelled.');
+    }
+
+
+    public function paymentCompleted()
+    {
+        return view('cart.payment_completed');
     }
 
 
