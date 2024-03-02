@@ -13,6 +13,9 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/list.css') }}">
 </head>
 
 <body class="h-screen p-0 m-0 antialiased">
@@ -24,28 +27,22 @@
             </a>
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
                 <a href="{{ route('index') }}" class="mr-5 hover:text-gray-900">Home</a>
-                <a href="#" class="mr-5 hover:text-gray-900">Cart</a>
+                <a href="{{ route('items.index') }}" class="mr-5 hover:text-gray-900">Items</a>
+                <a href="{{ route('sets.index') }}" class="mr-5 hover:text-gray-900">Sets</a>
+                <a href="{{ route('cart.index') }}" class="mr-5 hover:text-gray-900">Cart</a>
                 <a href="{{ route('profile.show') }}" class="mr-5 hover:text-gray-900">My Page</a>
             </nav>
             @if (Auth::check())
                 <form action="{{ route('logout') }}" method="POST" class="inline-flex items-center">
                     @csrf
                     <button type="submit"
-                        class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-[#ffec47] md:mt-0">
+                        class="inline-flex items-center px-3 py-1 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-[#ffec47]">
                         Logout
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
                     </button>
                 </form>
             @else
                 <a href="{{ route('login') }}"
-                    class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-[#ffec47] md:mt-0">Login
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
+                    class="inline-flex items-center px-3 py-1 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-[#ffec47]">Login
                 </a>
             @endif
         </div>
@@ -64,7 +61,8 @@
             </a>
             <p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0">©
                 2024 — Group4
-                <a href="#.html" class="ml-1 text-gray-600" rel="noopener noreferrer" target="_blank">Contact Us</a>
+                <a href="{{ route('contact.index') }}" class="ml-1 text-gray-600" rel="noopener noreferrer"
+                    target="_blank">Contact Us</a>
             </p>
         </div>
     </footer>

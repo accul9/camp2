@@ -29,7 +29,14 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('coupons', function (Blueprint $table) {
-            //
+            $table->renameColumn('coupon_id', 'f_coupon_id');
+            $table->renameColumn('coupon_code', 'f_coupon_code');
+            $table->renameColumn('coupon_valid_date	', 'f_coupon_valid_date');
+            $table->renameColumn('coupon_expired_date', 'f_coupon_expired_date');
+            $table->renameColumn('coupon_amount', 'f_coupon_amount');
+            $table->renameColumn('coupon_max', 'f_coupon_max');
+            $table->renameColumn('coupon_min_total', 'f_coupon_min_total');
+            $table->renameColumn('coupon_max_per_user', 'f_coupon_max_per_user');
         });
     }
 };
