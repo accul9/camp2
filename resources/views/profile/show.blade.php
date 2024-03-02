@@ -17,7 +17,7 @@
         </div>
 
         <x-green-button>
-            <a href="#">編集する</a>
+            <a href="{{ route('profile.edit') }}">編集する</a>
         </x-green-button>
     </div>
 @endsection

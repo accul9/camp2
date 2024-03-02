@@ -82,7 +82,7 @@
             <li><a href="{{ route('index') }}">Home</a></li>
             <li><a href="{{ route('items.index') }}">Items</a></li>
             <li><a href="{{ route('sets.index') }}">Sets</a></li>
-            <li><a href="{{ route('index') }}">Login</a></li>
+            <li><a href="{{ route('profile.show') }}">My Page</a></li>
         </ul>
     </nav>
 

@@ -59,12 +59,16 @@ Route::get('/recipes/{recipe_id}/items', [RecipeController::class, 'items'])->na
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');
 });
+
+//マイページを編集する
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
 //ログイン後Itemの一覧を表示
 /* Route::middleware('auth:users')->group(function () {
