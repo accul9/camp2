@@ -19,7 +19,6 @@
                     @if ($cartItem->item)
                         <div class="mb-2 md:flex md:items-center">
                             <div class="md:w-3/12">
-                                画像
                                 @if ($cartItem->item->item_image)
                                     <img src="{{ asset('storage/' . $cartItem->item->item_image) }}" alt="商品画像"
                                         class="object-cover w-20 h-20">
@@ -27,30 +26,34 @@
                                     <img src="">
                                 @endif
                             </div>
-                            <div class="md:w-4/12 md:ml-2">
-                                {{ $cartItem->item->item_name }}商品名
+                            <div class="md:w-3/12 md:ml-2">
+                                {{ $cartItem->item->item_name }}
                             </div>
-                            <div class="flex justify-around md:w-3/12">
-                                <div>{{ $cartItem->quantity }}個</div>
-                                <div>{{ $cartItem->item->item_price }}<span class="text-sm text-gray-700">円(税込)</span></div>
+
+                            <div class="flex justify-around md:w-4/12">
+                                <form action="{{ route('cart.update', $cartItem->item_id) }}" method="PUT">
+                                    @csrf
+                                    <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
+                                    <div>{{ $cartItem->quantity }}個
+                                        <select name="quantity" id="quantity"
+                                            class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
+                                            @for ($i = -10; $i <= 10; $i++)
+                                                <option value="{{ $i }}"
+                                                    @if ($i == 0) selected @endif>{{ $i }}
+                                                </option>
+                                            @endfor
+                                        </select>
+                                        <button type="submit"
+                                            class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">更新</button>
+                                    </div>
+
+
+                                </form>
+                                <div>{{ $cartItem->item->item_price }}<span class="text-sm text-gray-700">円(税込)</span>
+                                </div>
                             </div>
                             <!-- Quantity change form -->
-                            <form action="{{ route('cart.update', $cartItem->item_id) }}" method="PUT">
-                                @csrf
-                                <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
-                                <p class="my-5 text-xl text-gray-500">数量：
-                                    <select name="quantity" id="quantity"
-                                        class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
-                                        @for ($i = 1; $i <= 10; $i++)
-                                            <option value="{{ $i }}"
-                                                @if ($i == $cartItem->quantity) selected @endif>{{ $i }}
-                                            </option>
-                                        @endfor
-                                    </select>
-                                </p>
-                                <button type="submit"
-                                    class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">更新</button>
-                            </form>
+
                             <!-- Delete button -->
                             <form action="{{ route('cart.delete', $cartItem->item_id) }}" method="POST">
                                 @csrf
@@ -66,7 +69,6 @@
                     @if ($cartItem->set)
                         <div class="mb-2 md:flex md:items-center">
                             <div class="md:w-3/12">
-                                画像
                                 @if (!empty($cartItem->set->set_image))
                                     <img src="{{ asset('storage/' . $cartItem->set->set_image) }}" alt="商品画像"
                                         class="object-cover w-20 h-20">
@@ -75,7 +77,7 @@
                                 @endif
                             </div>
                             <div class="md:w-2/12 md:ml-2">
-                                {{ $cartItem->set->set_name }}商品名
+                                {{ $cartItem->set->set_name }}
                             </div>
                             <div class="flex justify-around md:w-4/12">
                                 <!-- Quantity change form -->

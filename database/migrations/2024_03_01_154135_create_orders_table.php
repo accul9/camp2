@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->decimal('total', 8, 2); // Example for storing the total cost of the order
-            $table->json('details'); // Could store serialized cart items or set details
+            $table->string('stripe_session_id')->unique();
+            $table->decimal('amount_received', 10, 2);
+            $table->json('details')->nullable(); // Adds a JSON-type 'details' column
             $table->timestamps();
         });
     }

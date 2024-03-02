@@ -12,6 +12,8 @@ use App\Http\Controllers\LifeCycleTestController;
 use App\Http\Controllers\ComponentTestController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\StripeWebhookController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -72,8 +74,9 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/delete/', [CartController::class, 'delete'])->name('cart.delete');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-Route::get('success', [CartController::class, 'success'])->name('cart.success');
+Route::get('/cart/success', [CartController::class, 'success'])->name('cart.success');
 Route::get('/cart/{id}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+//Route::get('/cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 
 Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']);
@@ -98,5 +101,18 @@ Route::post('/contact/thanks', [ContactsController::class, 'send'])->name('conta
 Route::get('/contact/thanks', function () {
     return view('contact.thanks');
 })->name('contact.thanks');
+
+//Stripeのテスト
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
+//Route::post('/webhook', [StripeWebhookController::class, 'handleWebhook']);
+Route::post('/webhook', [WebhookController::class, 'handle']);
+
+Route::post('/webhook', function () {
+    return view('webhook.index');
+})->name('webhook.index');
+
+
+
+
 
 require __DIR__ . '/auth.php';
