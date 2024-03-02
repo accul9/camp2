@@ -118,9 +118,15 @@
 
     </div>
 
-    <div class="front_content">CONTENT AREA</div>
-    <div class="parallax_content img_bg_02">PARALLAX AREA</div>
-    <div class="front_content">CONTENT AREA</div>
+    <footer class="footer">
+        <ul class="md-flex">
+            <li><a href="#">About</a></li>
+            <li><a href="#">サイトマップ</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+        <p class="copyright">© HAL EVENT WEEK</p>
+    </footer>
+
 
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
