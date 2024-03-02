@@ -26,26 +26,26 @@
                                 <img src="">
                             @endif
                         </div>
-                        <div class="md:w-4/12 md:ml-2">
+                        <div class="md:w-2/12 md:ml-2">
                             {{ $cartItem->item->item_name }}商品名
                         </div>
-                        <div class="md:w-3/12 flex justify-around">
-                            <div>{{ $cartItem->quantity }}個</div>
-                            <div>{{ $cartItem->item->item_price }}<span class="text-sm text-gray-700">円(税込)</span></div>
-                        </div>
+                        <div class="md:w-4/12 flex justify-around"> 
                         <!-- Quantity change form -->
                         <form action="{{ route('cart.update', $cartItem->item_id) }}" method="PUT">
                             @csrf
                             <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
-                            <p class="my-5 text-xl text-gray-500">数量：
+                            <div>{{ $cartItem->quantity }}個
                                 <select name="quantity" id="quantity" class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
-                                    @for ($i = 1; $i <= 10; $i++)
-                                        <option value="{{ $i }}" @if($i == $cartItem->quantity) selected @endif>{{ $i }}</option>
+                                    @for ($i = -10; $i <= 10; $i++)
+                                    <option value="{{ $i }}" @if($i == 0) selected @endif>{{ $i }}</option>
                                     @endfor
                                 </select>
-                            </p>
+                            
                             <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">更新</button>
+                            </div>
                         </form>
+                        </div>
+                        <div  class="md:w-1/12">{{ $cartItem->item->item_price }}<span class="text-sm text-gray-700">円(税込)</span></div>
                         <!-- Delete button -->
                         <form action="{{ route('cart.delete', $cartItem->item_id) }}" method="POST">
                             @csrf

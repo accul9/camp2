@@ -123,6 +123,7 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
     }
 
+    
 
     public function checkout()
     {
