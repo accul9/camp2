@@ -1,133 +1,76 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="w-full px-5 py-24 m-5 mx-auto">
-        <h2>カート一覧</h2>
+    <div class="max-w-4xl px-4 py-8 mx-auto mt-8">
+        <h2 class="mb-4 text-xl font-semibold">カート一覧</h2>
 
         @if ($cartItems->isEmpty())
-            <p>カートに商品は入っていません</p>
-            {{-- セット一覧に戻るボタン --}}
-            <a href="{{ route('items.index') }}">
-                <x-green-button>商品一覧に戻る</x-green-button>
-            </a>
-            <a href="{{ route('sets.index') }}">
-                <x-green-button>セット覧に戻る</x-green-button>
-            </a>
+            <div class="text-center">
+                <p>カートに商品は入っていません。</p>
+                <div class="mt-4 space-x-2">
+                    <a href="{{ route('items.index') }}"
+                        class="inline-block px-6 py-2 text-white transition bg-green-500 rounded hover:bg-green-600">商品一覧に戻る</a>
+                    <a href="{{ route('sets.index') }}"
+                        class="inline-block px-6 py-2 text-white transition bg-green-500 rounded hover:bg-green-600">セット覧に戻る</a>
+                </div>
+            </div>
         @else
-            <div class="p-6 dark:text-black">
-                @foreach ($cartItems as $cartItem)
-                    @if ($cartItem->item)
-                        <div class="mb-2 md:flex md:items-center">
-                            <div class="md:w-3/12">
-                                @if ($cartItem->item->item_image)
-                                    <img src="{{ asset('storage/' . $cartItem->item->item_image) }}" alt="商品画像"
-                                        class="object-cover w-20 h-20">
-                                @else
-                                    <img src="">
-                                @endif
-                            </div>
-                            <div class="md:w-3/12 md:ml-2">
-                                {{ $cartItem->item->item_name }}
-                            </div>
-
-                            <div class="flex justify-around md:w-4/12">
-                                <form action="{{ route('cart.update', $cartItem->item_id) }}" method="PUT">
-                                    @csrf
-                                    <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
-                                    <div>{{ $cartItem->quantity }}個
-                                        <select name="quantity" id="quantity"
-                                            class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
-                                            @for ($i = -10; $i <= 10; $i++)
-                                                <option value="{{ $i }}"
-                                                    @if ($i == 0) selected @endif>{{ $i }}
-                                                </option>
-                                            @endfor
-                                        </select>
-                                        <button type="submit"
-                                            class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">更新</button>
-                                    </div>
-
-
-                                </form>
-                                <div>{{ $cartItem->item->item_price }}<span class="text-sm text-gray-700">円(税込)</span>
+            @foreach ($cartItems as $cartItem)
+                <div class="flex items-center mb-4 overflow-hidden bg-white rounded-lg shadow">
+                    <div class="flex-shrink-0">
+                        @if ($cartItem->item && $cartItem->item->item_image)
+                            <img class="object-cover w-24 h-24" src="{{ asset('storage/' . $cartItem->item->item_image) }}"
+                                alt="商品画像">
+                        @elseif ($cartItem->set && $cartItem->set->set_image)
+                            <img class="object-cover w-24 h-24" src="{{ asset('storage/' . $cartItem->set->set_image) }}"
+                                alt="セット画像">
+                        @else
+                            <img class="object-cover w-24 h-24" src="{{ asset('path/to/default-image.png') }}"
+                                alt="デフォルト画像">
+                        @endif
+                    </div>
+                    <div class="flex-grow p-4">
+                        <h3 class="font-semibold">
+                            {{ $cartItem->item ? $cartItem->item->item_name : $cartItem->set->set_name }}</h3>
+                        <p>{{ $cartItem->item ? $cartItem->item->item_price : $cartItem->set->set_price }}円(税込)</p>
+                        <div class="flex items-center mt-2">
+                            <form
+                                action="{{ $cartItem->item ? route('cart.update', $cartItem->item_id) : route('cart.update', $cartItem->set_id) }}"
+                                method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="flex items-center space-x-2">
+                                    <label for="quantity" class="text-sm">数量:</label>
+                                    <select name="quantity" id="quantity" class="text-sm border-gray-300 rounded">
+                                        @for ($i = 1; $i <= 10; $i++)
+                                            <option value="{{ $i }}"
+                                                {{ $cartItem->quantity == $i ? 'selected' : '' }}>{{ $i }}
+                                            </option>
+                                        @endfor
+                                    </select>
+                                    <button type="submit"
+                                        class="px-4 py-1 text-sm text-white transition bg-blue-500 rounded hover:bg-blue-600">更新</button>
                                 </div>
-                            </div>
-                            <!-- Quantity change form -->
-
-                            <!-- Delete button -->
-                            <form action="{{ route('cart.delete', $cartItem->item_id) }}" method="POST">
+                            </form>
+                            <form
+                                action="{{ $cartItem->item ? route('cart.delete', $cartItem->item_id) : route('cart.delete', $cartItem->set_id) }}"
+                                method="POST" class="ml-4">
                                 @csrf
                                 @method('delete')
-                                <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
                                 <button type="submit"
-                                    class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-                                    onclick="return confirm('Are you sure?')">削除</button>
+                                    class="px-4 py-1 text-sm text-white transition bg-red-500 rounded hover:bg-red-600"
+                                    onclick="return confirm('削除してよろしいですか？')">削除</button>
                             </form>
                         </div>
-                    @endif
-
-                    @if ($cartItem->set)
-                        <div class="mb-2 md:flex md:items-center">
-                            <div class="md:w-3/12">
-                                @if (!empty($cartItem->set->set_image))
-                                    <img src="{{ asset('storage/' . $cartItem->set->set_image) }}" alt="商品画像"
-                                        class="object-cover w-20 h-20">
-                                @else
-                                    <img src="">
-                                @endif
-                            </div>
-                            <div class="md:w-2/12 md:ml-2">
-                                {{ $cartItem->set->set_name }}
-                            </div>
-                            <div class="flex justify-around md:w-4/12">
-                                <!-- Quantity change form -->
-                                <form action="{{ route('cart.update', $cartItem->set_id) }}" method="PUT">
-                                    @csrf
-
-                                    <input type="hidden" name="set_id" value="{{ $cartItem->set_id }}">
-                                    <div>{{ $cartItem->quantity }}個
-                                        <select name="quantity" id="quantity"
-                                            class="w-[100px] px-2 py-1 mt-2 border border-gray-300 rounded">
-                                            @for ($i = -10; $i <= 10; $i++)
-                                                <option value="{{ $i }}"
-                                                    @if ($i == 0) selected @endif>{{ $i }}
-                                                </option>
-                                            @endfor
-                                        </select>
-                                        <button type="submit"
-                                            class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">更新</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="md:w-1/12">{{ $cartItem->set->set_price }}<span
-                                    class="text-sm text-gray-700">円(税込)</span></div>
-                            <!-- Delete button -->
-                            <form action="{{ route('cart.delete', $cartItem->set_id) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <input type="hidden" name="set_id" value="{{ $cartItem->set_id }}">
-                                <button type="submit"
-                                    class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-                                    onclick="return confirm('Are you sure?')">削除</button>
-                            </form>
-                        </div>
-                    @endif
-                @endforeach
-
-                <div class="my-2">
-                    合計:{{ $totalAmount }}円(税込)
+                    </div>
                 </div>
-                <div>
-                    <button onclick="location.href='{{ route('cart.checkout') }}'"
-                        class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
-                        購入する
-                    </button>
-                    <button onclick="window.history.back();"
-                        class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
-                        戻る
-                    </button>
-                </div>
+            @endforeach
+            <div class="mt-6 text-right">
+                <p class="text-lg font-semibold">合計: {{ $totalAmount }}円(税込)</p>
+                <a href="{{ route('items.index') }}"
+                    class="inline-block px-6 py-2 mt-2 text-white transition bg-[#b2d9ad] rounded hover:bg-green-600">商品一覧に戻る</a>
+                <a href="{{ route('cart.checkout') }}"
+                    class="inline-block px-6 py-2 mt-2 text-white transition bg-green-500 rounded hover:bg-green-600">購入する</a>
             </div>
         @endif
     </div>
