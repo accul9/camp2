@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-4xl px-4 py-8 mx-auto mt-8">
-        <h2 class="mb-4 text-xl font-semibold">カート一覧</h2>
+    <div class="max-w-4xl px-4 py-24 mx-auto mt-10">
+        <x-generic-h1>カート一覧</x-generic-h1>
 
         @if ($cartItems->isEmpty())
             <div class="text-center">
@@ -24,9 +24,6 @@
                         @elseif ($cartItem->set && $cartItem->set->set_image)
                             <img class="object-cover w-24 h-24" src="{{ asset('storage/' . $cartItem->set->set_image) }}"
                                 alt="セット画像">
-                        @else
-                            <img class="object-cover w-24 h-24" src="{{ asset('path/to/default-image.png') }}"
-                                alt="デフォルト画像">
                         @endif
                     </div>
                     <div class="flex-grow p-4">
@@ -36,7 +33,7 @@
                         <div class="flex items-center mt-2">
                             <form
                                 action="{{ $cartItem->item ? route('cart.update', $cartItem->item_id) : route('cart.update', $cartItem->set_id) }}"
-                                method="POST">
+                                method="PUT">
                                 @csrf
                                 @method('PUT')
                                 <div class="flex items-center space-x-2">
@@ -52,13 +49,12 @@
                                         class="px-4 py-1 text-sm text-white transition bg-blue-500 rounded hover:bg-blue-600">更新</button>
                                 </div>
                             </form>
-                            <form
-                                action="{{ $cartItem->item ? route('cart.delete', $cartItem->item_id) : route('cart.delete', $cartItem->set_id) }}"
-                                method="POST" class="ml-4">
+                            <form action="{{ route('cart.delete', $cartItem->set_id) }}" method="POST">
                                 @csrf
                                 @method('delete')
+                                <input type="hidden" name="set_id" value="{{ $cartItem->set_id }}">
                                 <button type="submit"
-                                    class="px-4 py-1 text-sm text-white transition bg-red-500 rounded hover:bg-red-600"
+                                    class="px-4 py-1 ml-2 text-sm text-white transition bg-red-500 rounded hover:bg-red-600"
                                     onclick="return confirm('削除してよろしいですか？')">削除</button>
                             </form>
                         </div>

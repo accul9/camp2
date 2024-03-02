@@ -242,8 +242,12 @@ class CartController extends Controller
         }
 
         // 数量を更新
-        $cartItem->quantity += $request->quantity;
+        /*  $cartItem->quantity += $request->quantity;
         $cartItem->quantity = max(0, $cartItem->quantity); // 数量が0未満にならないようにする
+        $cartItem->save(); */
+
+        $quantity = $request->input('quantity', 1); // Default to 1 if not provided
+        $cartItem->quantity = $quantity;
         $cartItem->save();
 
         return redirect()->back()->with('success', 'Cart item updated successfully.');
