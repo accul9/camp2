@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-full px-5 py-24 m-5 mx-auto">
-    <h2>カート一覧</h2>
+<div class="w-full px-5 py-24 m-5 mx-auto ">
+    <x-generic-h1>
+        <div class="ml-48 mb-2">カート一覧</div>
+    </x-generic-h1>
 
     @if ($cartItems->isEmpty())
         <p>カートに商品は入っていません</p>
@@ -17,11 +19,10 @@
         <div class="p-6 dark:text-black">   
             @foreach ($cartItems as $cartItem)
                 @if($cartItem->item)
-                    <div class="md:flex md:items-center mb-2">
+                    <div class="md:flex md:justify-center md:items-center mb-8">
                         <div class="md:w-3/12">
-                            画像
                             @if($cartItem->item->item_image)
-                                <img src="{{ asset('storage/' . $cartItem->item->item_image) }}" alt="商品画像" class="w-20 h-20 object-cover">
+                                <img src="{{ asset('storage/' . $cartItem->item->item_image) }}" alt="商品画像" class="w-40 h-430 object-cover">
                             @else
                                 <img src="">
                             @endif
@@ -47,7 +48,7 @@
                         </div>
                         <div  class="md:w-1/12">{{ $cartItem->item->item_price }}<span class="text-sm text-gray-700">円(税込)</span></div>
                         <!-- Delete button -->
-                        <form action="{{ route('cart.delete', $cartItem->item_id) }}" method="POST">
+                        <form class="2/12" action="{{ route('cart.delete', $cartItem->item_id) }}" method="POST">
                             @csrf
                             @method('delete')
                             <input type="hidden" name="item_id" value="{{ $cartItem->item_id }}">
@@ -58,11 +59,10 @@
                 @endif
 
                 @if ($cartItem->set)
-                    <div class="md:flex md:items-center mb-2">
+                    <div class="md:flex md:justify-center md:items-center mb-8">
                         <div class="md:w-3/12">
-                            画像
                             @if (!empty($cartItem->set->set_image))
-                                <img src="{{ asset('storage/' . $cartItem->set->set_image) }}" alt="商品画像" class="w-20 h-20 object-cover">
+                                <img src="{{ asset('storage/' . $cartItem->set->set_image) }}" alt="商品画像" class="w-40 h-40 object-cover">
                             @else
                                 <img src="">
                             @endif
@@ -100,14 +100,14 @@
                 @endif 
             @endforeach
 
-            <div class="my-2">
+            <div class="my-2 mt-9 text-xl md:items-center md:justify-center ml-40 md:mt-16">
                 合計:{{ $totalAmount }}円(税込) 
             </div>
             <div>
-                <button onclick="location.href='{{route('cart.checkout')}}'" class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
+                <button onclick="location.href='{{route('cart.checkout')}}'" class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10  ml-40 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
                     購入する
                 </button>
-                <button onclick="window.history.back();" class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
+                <button onclick="window.history.back();" class="flex w-[210px] justify-center mr-10 px-8 py-2 my-10 ml-40 text-lg text-white bg-green-500 border-0 rounded focus:outline-none hover:bg-green-600">
                     戻る
                 </button>
             </div>
