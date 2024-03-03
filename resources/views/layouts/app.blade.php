@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/list.css') }}">
 </head>
 
-<body class="h-screen p-0 m-0 antialiased">
+<body class="h-screen p-0 m-0 antialiased h-screen p-0 m-0 antialiased" style="background-image: url('{{ asset('images/mv01.jpg') }}'); background-size: cover;">
     <header class="text-gray-600 body-font bg-[#e0ebaf] fixed top-0 left-0 w-full">
         <div class="container flex flex-col flex-wrap items-center p-3 mx-auto md:flex-row">
             <a class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
@@ -27,6 +27,8 @@
             </a>
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
                 <a href="{{ route('index') }}" class="mr-5 hover:text-gray-900">Home</a>
+                <a href="{{ route('items.index') }}" class="mr-5 hover:text-gray-900">Items</a>
+                <a href="{{ route('sets.index') }}" class="mr-5 hover:text-gray-900">Sets</a>
                 <a href="{{ route('cart.index') }}" class="mr-5 hover:text-gray-900">Cart</a>
                 <a href="{{ route('profile.show') }}" class="mr-5 hover:text-gray-900">My Page</a>
             </nav>
@@ -59,7 +61,8 @@
             </a>
             <p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0">©
                 2024 — Group4
-                <a href="#.html" class="ml-1 text-gray-600" rel="noopener noreferrer" target="_blank">Contact Us</a>
+                <a href="{{ route('contact.index') }}" class="ml-1 text-gray-600" rel="noopener noreferrer"
+                    target="_blank">Contact Us</a>
             </p>
         </div>
     </footer>

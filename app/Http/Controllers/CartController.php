@@ -91,7 +91,7 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Product added to cart successfully.');
     }
 
-        /**
+    /**
      * Remove the specified resource from storage.
      */
 
@@ -119,7 +119,7 @@ class CartController extends Controller
         } else {
             return back()->with('error', 'No item or set specified.');
         }
- 
+
         return redirect()->route('cart.index')->with('success', 'Item added to cart successfully.');
     }
 
@@ -129,7 +129,7 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         $cartItems = Cart::with(['item', 'set'])->where('user_id', $userId)->get();
-    
+
         $lineItems = [];
         foreach ($cartItems as $cartItem) {
             if ($cartItem->item) {
@@ -160,27 +160,27 @@ class CartController extends Controller
                 array_push($lineItems, $lineItem);
             }
         }
-            // dd($lineItems);
-     
-         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-     
-         $session = \Stripe\Checkout\Session::create([
-             'payment_method_types' => ['card'],
-             'line_items' => $lineItems,
-             'mode' => 'payment',
-             'success_url' => route('cart.success'),
-             'cancel_url' => route('cart.cancel')
-         ]);
-     
-         $publicKey = env('STRIPE_PUBLIC_KEY');
-     
-         return view('cart.checkout', compact('session', 'publicKey'));
-     }
- 
+        // dd($lineItems);
+
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => $lineItems,
+            'mode' => 'payment',
+            'success_url' => route('cart.success'),
+            'cancel_url' => route('cart.cancel')
+        ]);
+
+        $publicKey = env('STRIPE_PUBLIC_KEY');
+
+        return view('cart.checkout', compact('session', 'publicKey'));
+    }
+
     public function success()
     {
         Cart::where('user_id', Auth::id())->delete();
-        return redirect()->route('cart.payment_completed')->with('success', 'Payment successful.');
+        return view('cart.success')->with('success', 'Payment successful.');
     }
 
     public function cancel()
@@ -234,25 +234,29 @@ class CartController extends Controller
         $request->validate([
             'quantity' => 'required|integer|min:-10|max:10',
         ]);
-    
+
         // カートからアイテムを取得
         $cartItem = Cart::where('user_id', Auth::id())
-                        ->where(function ($query) use ($id) {
-                            $query->where('item_id', $id)
-                                  ->orWhere('set_id', $id);
-                        })
-                        ->first();
-    
+            ->where(function ($query) use ($id) {
+                $query->where('item_id', $id)
+                    ->orWhere('set_id', $id);
+            })
+            ->first();
+
         // アイテムが存在しない場合はエラー
         if (!$cartItem) {
             return redirect()->back()->with('error', 'Cart item not found.');
         }
-    
+
         // 数量を更新
-        $cartItem->quantity += $request->quantity;
+        /*  $cartItem->quantity += $request->quantity;
         $cartItem->quantity = max(0, $cartItem->quantity); // 数量が0未満にならないようにする
+        $cartItem->save(); */
+
+        $quantity = $request->input('quantity', 1); // Default to 1 if not provided
+        $cartItem->quantity = $quantity;
         $cartItem->save();
-    
+
         return redirect()->back()->with('success', 'Cart item updated successfully.');
     }
 

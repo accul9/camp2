@@ -18,7 +18,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
         "mindscms/laravelshoppingcart": "^2.1",
-        "stripe/stripe-php": "^13.12"
+        "stripe/stripe-php": "^13.13"
     },
     "require-dev": {
         "backpack/generators": "^4.0",

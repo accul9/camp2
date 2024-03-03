@@ -11,6 +11,9 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\LifeCycleTestController;
 use App\Http\Controllers\ComponentTestController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\StripeWebhookController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -77,14 +80,13 @@ Route::post('/profile/update', [ProfileController::class, 'update'])->name('prof
 }); */
 
 //カート機能
-// Route::prefix('cart')->middleware('auth:users')->group(function () {
-//     Route::get('/', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/delete/', [CartController::class, 'delete'])->name('cart.delete');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-Route::get('success', [CartController::class, 'success'])->name('cart.success');
+Route::get('/cart/success', [CartController::class, 'success'])->name('cart.success');
 Route::get('/cart/{id}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+//Route::get('/cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 Route::get('payment_completed', [CartController::class, 'paymentCompleted'])->name('cart.payment_completed');
 
@@ -92,6 +94,36 @@ Route::get('/component-test1', [ComponentTestController::class, 'showComponent1'
 Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']);
 Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
 Route::get('/serviceprovidertest', [LifeCycleTestController::class, 'showServiceProviderTest']);
+
+//購入履歴一覧機能
+Route::post('/orders/create', [OrderController::class, 'createOrder'])->name('orders.create')->middleware('auth');
+Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show')->middleware('auth');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index')->middleware('auth');
+
+
+//メール機能
+//入力フォームページ
+Route::get('/contact', [ContactsController::class, 'index'])->name('contact.index');
+//確認フォームページ
+Route::post('/contact/confirm', [ContactsController::class, 'confirm'])->name('contact.confirm');
+//送信完了ページ
+Route::post('/contact/thanks', [ContactsController::class, 'send'])->name('contact.send');;
+
+Route::get('/contact/thanks', function () {
+    return view('contact.thanks');
+})->name('contact.thanks');
+
+//Stripeのテスト
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
+//Route::post('/webhook', [StripeWebhookController::class, 'handleWebhook']);
+Route::post('/webhook', [WebhookController::class, 'handle']);
+
+Route::post('/webhook', function () {
+    return view('webhook.index');
+})->name('webhook.index');
+
+
+
 
 
 require __DIR__ . '/auth.php';

@@ -83,8 +83,7 @@ class ItemCrudController extends CrudController
         CRUD::field([   // Summernote
             'name'  => 'item_description',
             'label' => 'Description',
-            'type'  => 'summernote',
-            //'escaped' => false, // allow html tags
+            'type'  => 'textarea',
             'options' => [
                 'minheight' => 300,
                 'height' => 240

@@ -78,4 +78,14 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+
+    public function purchaseHistory()
+    {
+        $userId = Auth::id();
+
+        // Assuming you have an Order model that represents the purchases
+        $purchases = Order::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+
+        return view('profile.purchases', compact('purchases'));
+    }
 }
