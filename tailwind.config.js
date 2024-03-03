@@ -17,6 +17,9 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            backgroundImage: theme => ({
+                'custom-login': "url('https://www.glamping-fujikawaguchiko.com/wp-content/uploads/2021/12/mv01.jpg')",
+            })
         },
     },
 
