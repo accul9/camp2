@@ -23,19 +23,6 @@
 </head>
 
 <body class="antialiased">
-    <!-- @if (Route::has('login'))
-                <div class="z-10 p-6 text-right sm:fixed sm:top-0 sm:right-0">
-                    @auth
-                                                                                                                                                                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-@else
-    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                                                                                                                                                                    @if (Route::has('register'))
-    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-    @endif
-                    @endauth
-                </div>
-            @endif -->
 
     <header>
         <nav>
@@ -77,6 +64,9 @@
         </div>
     </div>
 
+    <p class="cap"> HEW-GROUP-4</p>
+
+
     <nav class="screen">
         <ul class="screen_menu">
             <li><a href="./index.html">Home</a></li>
@@ -99,8 +89,9 @@
 
     <section>
         <p class="p0"> PRODUCTS </p>
-        <p class="p1">商品説明</p>
-        <p class="p2">pr文章</p>
+        <p class="p1">キャンプを、もっとおいしく。</p>
+        <p class="p2">キャンプ場での食事がもっと美味しくなるようなアイデアやレシピも満載。</p>
+        <p class="p4">自然の中で味わう特別な食体験を提供し、新たな食の冒険がここから始まります。</p>
 
         <div class="p3">
             <a href="">
@@ -117,6 +108,12 @@
     <div class="empty_3">
 
     </div>
+
+<div class="parallax_box">
+    <div class="front_content">CONTENT AREA</div>
+    <div class="parallax_content img_bg_02">PARALLAX AREA</div>
+    <div class="front_content">CONTENT AREA</div>
+</div>
 
     <footer class="footer">
         <ul class="md-flex">
