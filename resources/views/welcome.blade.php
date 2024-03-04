@@ -114,6 +114,13 @@
     <div class="front_content"></div>
     <div class="parallax_content img_bg_02"></div>
     <div class="front_content"></div>
+    <p class="paratitle">About us</p>
+    <p class="parap1">当サイトでは、キャンプ場での１つの楽しみである「食」</p>
+    <p class="parap2">いわゆるキャンプ飯をより一層素敵なものするためのサービスを提供しています。</p>
+    <p class="parap3">レシピの紹介、食材の単品販売、食材のセット販売などを提供しています。</p>
+    <p class="parap4">あなたに、おいしいひと時を。</p>
+    <p class="parap5">高畑吉一 CHEN AI CHI 山内寮 </p>
+    <p class="parap6">内間爽一郎 浅川隼人 早川 優飛 何 成棟</p>
 
 </div>
 

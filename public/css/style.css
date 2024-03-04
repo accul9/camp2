@@ -361,11 +361,12 @@ section .p0{
 
 
 .parallax_content{
-  min-height: 1060px;
+  min-height: 960px;
   background-position: center top;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  
 }
 .front_content{
   padding: 60px;
@@ -373,6 +374,10 @@ section .p0{
 }
 .parallax_content.img_bg_02 {
   background-image: url('/images/mainpara2.jpg');
+}
+
+.parallax_box{
+  position: relative;
 }
 
 .cap{
@@ -395,4 +400,82 @@ section .p0{
 
 .slider .slick-slide {
   margin:0 10px;/*スライド左右の余白調整*/
+}
+
+
+.paratitle{
+  position: absolute;
+  left: 440px;
+  top: 200px;
+  font-size: 100px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  z-index: 50;
+  color: #141414;
+}
+
+.parap1{
+  position: absolute;
+  left: 420px;
+  top: 380px;
+  font-size: 36px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  z-index: 50;
+  color: #141414;
+}
+
+.parap2{
+  position: absolute;
+  left: 420px;
+  top: 480px;
+  font-size: 36px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  z-index: 50;
+  color: #141414;
+}
+
+.parap3{
+  position: absolute;
+  left: 420px;
+  top: 580px;
+  font-size: 36px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  z-index: 50;
+  color: #141414;
+}
+
+.parap4{
+  position: absolute;
+  left: 420px;
+  top: 680px;
+  font-size: 36px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  z-index: 50;
+  color: #141414;
+}
+
+.parap5{
+  position: absolute;
+  left: 420px;
+  top: 860px;
+  font-size: 36px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  z-index: 50;
+  color: #141414;
+}
+
+.parap6{
+  position: absolute;
+  left: 420px;
+  top: 920px;
+  font-size: 36px;
+  font-family: 'Kalnia', serif;
+  font-family: 'Sawarabi Mincho', serif;
+  z-index: 50;
+  color: #141414;
 }
