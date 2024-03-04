@@ -8,6 +8,7 @@
 
     <meta charset="UTF-8">
     <title>メインページ</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -110,9 +111,10 @@
     </div>
 
 <div class="parallax_box">
-    <div class="front_content">CONTENT AREA</div>
-    <div class="parallax_content img_bg_02">PARALLAX AREA</div>
-    <div class="front_content">CONTENT AREA</div>
+    <div class="front_content"></div>
+    <div class="parallax_content img_bg_02"></div>
+    <div class="front_content"></div>
+
 </div>
 
     <footer class="footer">
