@@ -44,7 +44,8 @@ class UsedItemsCrudController extends CrudController
         CRUD::column('recipe.recipe_name')->type('relationship')
             ->label('recipe'); // 表示名
         CRUD::column('item.item_name')->type('relationship')->label('item');
-        CRUD::column('usedItem_quantity');
+        CRUD::column('used_quantity');
+        CRUD::column('used_unit');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -90,7 +91,15 @@ class UsedItemsCrudController extends CrudController
             'model'     => "App\Models\Item", // related model
             'attribute' => 'item_name', // foreign key attribute that is shown to user
         ]);
-        CRUD::field('usedItem_quantity');
+        CRUD::field('used_quantity')->type('text')->label('Quantity');
+        CRUD::field([
+            'name'        => 'used_unit',
+            'label'       => 'Unit',
+            'type'        => 'select_from_array',
+            'options'     => ['-' => '-', '個' => '個', '袋' => '袋', '本' => '本', 'パック' => 'パック', '小さじ' => '小さじ', '大さじ' => '大さじ', 'cc' => 'cc', 'ml' => 'ml', 'g' => 'g', '枚' => '枚', '合' => '合', '切れ' => '切れ', '束' => '束', '缶' => '缶', 'カップ' => 'カップ', '玉' => '玉', 'かけ' => 'かけ', '適量' => '適量'],
+            'allows_null' => false,
+            'default'     => 'g',
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax:

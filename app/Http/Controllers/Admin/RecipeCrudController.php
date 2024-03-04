@@ -39,7 +39,11 @@ class RecipeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column('recipe_id')->label('ID');
+        CRUD::column('recipe_name')->label('レシピ名');
+        CRUD::column('set.set_name')->type('relationship')
+            ->label('セット'); // 表示名
+        CRUD::column('recipe_image')->type('image')->label('レシピ画像');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -68,13 +72,23 @@ class RecipeCrudController extends CrudController
             'model' => "App\Models\Set",
         ]);
         CRUD::field([   // Summernote
+            'name'  => 'recipe_ingredients',
+            'label' => 'Ingredients',
+            'type'  => 'summernote',
+            'escaped' => false, // allow html tags
+            'options' => [
+                'minheight' => 300,
+                'height' => 240
+            ]
+        ]);
+        CRUD::field([   // Summernote
             'name'  => 'recipe_description',
             'label' => 'Description',
             'type'  => 'summernote',
             //'escaped' => false, // allow html tags
             'options' => [
                 'minheight' => 300,
-                'height' => 360
+                'height' => 240
             ]
         ]);
         CRUD::field('recipe_image')
@@ -107,6 +121,8 @@ class RecipeCrudController extends CrudController
         CRUD::column('recipe_name')->label('レシピ名');
         CRUD::column('set.set_name')->type('relationship')
             ->label('セット'); // 表示名
+        CRUD::column('recipe_ingredients')->type('text')->label('材料');
         CRUD::column('short_description')->label('レシピ内容');
+        CRUD::column('recipe_image')->type('image')->label('画像');
     }
 }

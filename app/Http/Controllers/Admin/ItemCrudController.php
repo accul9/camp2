@@ -80,6 +80,15 @@ class ItemCrudController extends CrudController
             'model'     => "App\Models\Category", // related model
             'attribute' => 'name', // foreign key attribute that is shown to user
         ]);
+        CRUD::field([   // Summernote
+            'name'  => 'item_description',
+            'label' => 'Description',
+            'type'  => 'textarea',
+            'options' => [
+                'minheight' => 300,
+                'height' => 240
+            ]
+        ]);
         CRUD::field('item_image')
             ->type('upload')
             ->withFiles([

@@ -40,6 +40,14 @@ class Recipe extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function items()
+    {
+        // Adjust 'item_recipe' to 'usedItems' if that's your pivot table's name
+        // Also, ensure you are using the correct foreign and related keys if they are custom
+        return $this->belongsToMany(Item::class, 'usedItems', 'recipe_id', 'item_id')
+            ->withPivot('used_quantity', 'used_unit'); // Include pivot data if necessary
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
