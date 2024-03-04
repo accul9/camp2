@@ -8,7 +8,7 @@
 
 
             <div class="grid p-8 mx-auto mt-20 rounded-lg shadow-lg justify-items-center bg-gray-50">
-                <img class="object-cover w-[640px] h-[480px] rounded-t-lg" src="{{ asset($recipe->recipe_image) }}"
+                <img class="object-cover w-[640px] h-[480px] rounded-t-lg" src="{{ asset('storage/' . $recipe->recipe_image) }}"
                     alt="content">
             </div>
         </div>

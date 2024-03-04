@@ -22,7 +22,7 @@
                 <div class="p-4 xl:w-1/3 md:w-1/3">
                     <div class="p-10 rounded-lg shadow-lg bg-gray-50">
                         <img class="object-cover object-center w-[400px] h-[400px] mb-6 rounded-t-lg"
-                            src="{{ asset($set->set_image) }}" alt="content">
+                            src="{{ asset('storage/' . $set->set_image) }}" alt="content">
                         <div class="pt-4 pb-8 rounded-b-lg bg-grey-50">
                             <h2 class="mb-4 text-lg font-medium text-gray-900 title-font">{{ $set->set_name }}</h2>
                             <a href="{{ route('sets.show', $set) }}">

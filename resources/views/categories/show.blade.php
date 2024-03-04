@@ -28,7 +28,7 @@
                     <div class="p-4 xl:w-1/1 md:w-1/3">
                         <div class="p-8 rounded-lg shadow-lg bg-gray-50">
                             <img class="object-cover object-center w-[270px] h-[270px] rounded-t-lg"
-                                src="{{ asset($item->item_image) }}" alt="content">
+                                src="{{ asset('storage/' . $item->item_image) }}" alt="content">
                             <div class="pt-4 pb-4 rounded-b-lg bg-grey-50">
                                 <h2 class="mb-4 text-lg font-medium text-gray-900 title-font">{{ $item->item_name }}</h2>
                                 <a href="{{ route('items.show', $item) }}">

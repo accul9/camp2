@@ -8,7 +8,7 @@
                 <div class="p-4 xl:w-1/2 md:w-1/3">
                     <div class="p-8 rounded-lg shadow-lg bg-gray-50">
                         <img class="object-cover object-center w-[320px] h-[200px] mb-6 rounded-t-lg"
-                            src="{{ asset($recipe->recipe_image) }}" alt="content">
+                            src="{{ asset('storage/' . $recipe->recipe_image) }}" alt="content">
                         <div class="pt-2 pb-2 rounded-b-lg bg-grey-50">
                             <h2 class="mb-4 text-lg font-medium text-gray-900 title-font">{{ $recipe->recipe_name }}
                             </h2>
