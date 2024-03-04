@@ -7,7 +7,8 @@
         <div class="flex flex-col w-1/2 mt-30">
 
             <div class="grid p-10 mx-auto mt-40 rounded-lg shadow-lg justify-items-center bg-gray-50">
-                <img class="object-cover w-[480px] h-[360px] rounded-t-lg" src="{{ asset($item->item_image) }}" alt="content">
+                <img class="object-cover w-[480px] h-[360px] rounded-t-lg" src="{{ asset('storage/' . $item->item_image) }}"
+                    alt="content">
             </div>
         </div>
 

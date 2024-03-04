@@ -19,10 +19,10 @@
                 <div class="flex items-center mb-4 overflow-hidden bg-white rounded-lg shadow">
                     <div class="flex-shrink-0">
                         @if ($cartItem->item && $cartItem->item->item_image)
-                            <img class="object-cover w-24 h-24" src="{{ asset('/storage' . $cartItem->item->item_image) }}"
+                            <img class="object-cover w-24 h-24" src="{{ asset('storage/' . $cartItem->item->item_image) }}"
                                 alt="商品画像">
                         @elseif ($cartItem->set && $cartItem->set->set_image)
-                            <img class="object-cover w-24 h-24" src="{{ asset('storage' . $cartItem->set->set_image) }}"
+                            <img class="object-cover w-24 h-24" src="{{ asset('storage/' . $cartItem->set->set_image) }}"
                                 alt="セット画像">
                         @endif
                     </div>
