@@ -62,12 +62,22 @@ Route::get('/recipes/{recipe_id}/items', [RecipeController::class, 'items'])->na
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');
 });
+
+//マイページを編集する
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+//ログイン後Itemの一覧を表示
+/* Route::middleware('auth:users')->group(function () {
+    Route::get('/', [ItemController::class, 'index'])->name('items.index');
+    Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
+}); */
 
 //カート機能
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
@@ -78,6 +88,7 @@ Route::get('/cart/success', [CartController::class, 'success'])->name('cart.succ
 Route::get('/cart/{id}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
 //Route::get('/cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
+Route::get('payment_completed', [CartController::class, 'paymentCompleted'])->name('cart.payment_completed');
 
 Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']);
 Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']);
