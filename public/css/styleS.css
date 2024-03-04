@@ -1,10 +1,11 @@
 
 
 .slideshow {
-  position: absolute;
+  /* position: absolute; */
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  scroll-snap-type: start;
 }
 
 .slideshow-image {
