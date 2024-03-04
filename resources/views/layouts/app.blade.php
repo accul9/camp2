@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="{{ asset('css/list.css') }}">
 </head>
 
-<body class="h-screen p-0 m-0 antialiased"
-    style="background-image: url('{{ asset('images/mv01.jpg') }}'); background-size: cover;">
+<body class="h-screen p-0 m-0 antialiased">
+    {{-- style="background-image: url('{{ asset('images/mv01.jpg') }}'); background-size: cover;"> --}}
     <header class="text-gray-600 body-font bg-[#e0ebaf] fixed top-0 left-0 w-full">
         <div class="container flex flex-col flex-wrap items-center p-3 mx-auto md:flex-row">
             <a class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
