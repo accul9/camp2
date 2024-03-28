@@ -43,14 +43,14 @@
                     </a></li>
             </ul>
 
-            <ul class="mainnav mainnav1">
+            {{-- <ul class="mainnav mainnav1">
                 <li><a href="{{ route('login') }}">
                         <p class="nava">Login</p>
                     </a></li>
                 <li><a href="{{ route('register') }}">
                         <p class="nava">Sign-up</p>
                     </a></li>
-            </ul>
+            </ul> --}}
         </nav>
     </header>
 

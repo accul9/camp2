@@ -33,7 +33,7 @@ Route::get('/', function () {
 //Dashboardページ
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('sets.index');
 
 //Setsの一覧表示
 Route::get('/sets', [SetController::class, 'index'])->name('sets.index');
